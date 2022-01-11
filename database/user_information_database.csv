@@ -1,4 +1,4 @@
-﻿user_id,user_name,user_email,user_rating,"history of journeys
+﻿user_id,username,user_email,user_rating,"history of journeys
 (**Should we generate a file for each user that contains this data?)",reward_amount,penalty_amount,
 01,tester_1,nan,4.0,nan,0.0,0.0,**Would the login stuff happen here too?
 02,tester_2,nan,3.5,nan,0.0,0.0,
