@@ -21,4 +21,4 @@ Will move to a mySQL database later on if time permits.
     the user has signed up to and record if
     user went on the journeys or if the user cancelled
     
-(**Should we generate a file for each user that contains this data?)	reward_amount	penalty_amount
+(**Should we generate a file for each user that contains this data?)
