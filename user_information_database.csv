@@ -1,0 +1,2 @@
+﻿user_id,user_name,user_email,user_rating,history of journeys,reward_amount,penalty_amount,
+,,,,**Should we generate a file for each user that contains this data?,,,**Would the login stuff happen here too?
