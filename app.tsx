@@ -2,10 +2,10 @@ const express = require('express')
 const app = express()
 const port = 5000
 
-app.get('/', (req, res) => {
-  res.json(
-    {"msg": "Carma with a c!"}
-  )
+app.get('/journeys', (req, res) => {
+  const exJourneys = require('./exJourneys.json');
+  console.log(exJourneys)
+  res.json(exJourneys)
 })
 
 app.listen(port, () => {
