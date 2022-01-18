@@ -1,0 +1,53 @@
+{
+    "exJourneys":
+    [
+        {
+            "journeyID": "01",
+            "journeyType": "Group Taxi",
+            "journeyStart": "London",
+            "journeyEnd": "Ibiza",
+            "pricing": 
+                [
+                    {
+                        "currency": "Euro",
+                        "quantity": 20
+                    }
+                ],
+            "creatorID": "42",
+            "creatorRating": "4.2"
+        },
+
+        {
+            "journeyID": "02",
+            "journeyType": "Walk",
+            "journeyStart": "My House",
+            "journeyEnd": "Your House",
+            "pricing": 
+                [
+                    {
+                        "currency": "Free",
+                        "quantity": 0
+                    }
+                ],
+            "creatorID": "4",
+            "creatorRating": "2.4"
+        },
+
+        {
+            "journeyID": "03",
+            "journeyType": "Driver-Passenger",
+            "journeyStart": "West Virginia",
+            "journeyEnd": "Mountain Mama",
+            "pricing": 
+                [
+                    {
+                        "currency": "US-Dollar",
+                        "quantity": 45
+                    }
+                ],
+            "creatorID": "8",
+            "creatorRating": "4.35"
+        }
+
+    ]
+}
