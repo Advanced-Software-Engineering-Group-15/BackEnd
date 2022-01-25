@@ -1,3 +1,5 @@
+// Code used to verify connection between local project and AWS database
+// Insert this code into where you need to connect to the database. See db_create_table.js as example
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
