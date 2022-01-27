@@ -47,6 +47,22 @@
                 ],
             "creatorID": "8",
             "creatorRating": "4.35"
+        },
+
+        {
+            "journeyID": "04",
+            "journeyType": "Group Taxi",
+            "journeyStart": "My House",
+            "journeyEnd": "Swans Curragha",
+            "pricing": 
+                [
+                    {
+                        "currency": "Euro",
+                        "quantity": 10
+                    }
+                ],
+            "creatorID": "69",
+            "creatorRating": "5.0"
         }
 
     ]
