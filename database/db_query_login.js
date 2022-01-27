@@ -13,29 +13,22 @@ var con = mysql.createConnection({
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
-  var sql = "SELECT * FROM userAccountInfo WHERE username=";
-  
-  
-  
-  var username str(input_username);
-  
-  let text1 = "sea";
-  let text2 = "food";
-  let result = text1.concat(text2);
-  
-  sql = sql.concat(username)
-  
-  
-  con.query(sql, function (err, result) {
+  var sql = "SELECT * FROM userAccountInfo WHERE username = ?";
+  var input_username = "Vanilla"
+  var input_password = "password3"
+  con.query(sql, [input_username], function (err, result) {
     if (err) {
 		//This is is username is not found in Database 
-		console.log("This username is not present: " + username);
+		console.log("This username is not present: " + input_username);
 		throw err;
 	}
 	// If Username found in Database
-    console.log("Found User: " + username);
-	
-	//Return Allow to login flag 
+    console.log("Found User: " + input_username);
+    console.log(result[0].password) //Need the zero to access the column names like password
+    if (result[0].password == input_password){
+      console.log("Successful password")
+    }
+    //Return Allow to login flag 
 	
 	
   });
