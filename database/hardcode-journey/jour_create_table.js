@@ -12,7 +12,7 @@ var con = mysql.createConnection({
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
-    var sql = "ALTER TABLE journeyList ADD COLUMN start_coords POINT NOT NULL, ADD COLUMN end_coords POINT NOT NULL";
+    var sql = "ALTER TABLE journeyList ADD COLUMN start_latitude DECIMAL(8,6), ADD COLUMN start_longitude DECIMAL(9,6), ADD COLUMN end_latitude DECIMAL(8,6), ADD COLUMN end_longitude DECIMAL(9,6)";
     con.query(sql, function (err, result) {
       if (err) throw err;
       console.log("Table altered");
