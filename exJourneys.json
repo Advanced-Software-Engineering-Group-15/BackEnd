@@ -4,8 +4,23 @@
         {
             "journeyID": "01",
             "journeyType": "Group Taxi",
-            "journeyStart": "London",
-            "journeyEnd": "Ibiza",
+            "journeyStart": 
+            [
+                {
+                    "name": "Swans Curragha, Ashbourne",
+                    "latitude": "53.5399601",
+                    "longitude": "-6.4446056"
+                }
+            ],
+            "journeyEnd": 
+            [
+                {
+                    "name": "Pillo Hotel, Ashbourne",
+                    "latitude": "53.5260758", 
+                    "longitude": "-6.4160728"
+                    
+                }
+            ],
             "pricing": 
                 [
                     {
@@ -20,8 +35,23 @@
         {
             "journeyID": "02",
             "journeyType": "Walk",
-            "journeyStart": "My House",
-            "journeyEnd": "Your House",
+            "journeyStart": 
+            [
+                {
+                    "name": "Swans Curragha, Ashbourne",
+                    "latitude": "53.5399601",
+                    "longitude": "-6.4446056"
+                }
+            ],
+            "journeyEnd": 
+            [
+                {
+                    "name": "Pillo Hotel, Ashbourne",
+                    "latitude": "53.5260758", 
+                    "longitude": "-6.4160728"
+                    
+                }
+            ],
             "pricing": 
                 [
                     {
@@ -36,8 +66,23 @@
         {
             "journeyID": "03",
             "journeyType": "Driver-Passenger",
-            "journeyStart": "West Virginia",
-            "journeyEnd": "Mountain Mama",
+            "journeyStart": 
+            [
+                {
+                    "name": "Swans Curragha, Ashbourne",
+                    "latitude": "53.5399601",
+                    "longitude": "-6.4446056"
+                }
+            ],
+            "journeyEnd": 
+            [
+                {
+                    "name": "Pillo Hotel, Ashbourne",
+                    "latitude": "53.5260758", 
+                    "longitude": "-6.4160728"
+                    
+                }
+            ],
             "pricing": 
                 [
                     {
@@ -52,8 +97,23 @@
         {
             "journeyID": "04",
             "journeyType": "Group Taxi",
-            "journeyStart": "My House",
-            "journeyEnd": "Swans Curragha",
+            "journeyStart": 
+            [
+                {
+                    "name": "Swans Curragha, Ashbourne",
+                    "latitude": "53.5399601",
+                    "longitude": "-6.4446056"
+                }
+            ],
+            "journeyEnd": 
+            [
+                {
+                    "name": "Pillo Hotel, Ashbourne",
+                    "latitude": "53.5260758", 
+                    "longitude": "-6.4160728"
+                    
+                }
+            ],
             "pricing": 
                 [
                     {
