@@ -8,6 +8,12 @@ app.get('/journeys', (req, res) => {
   res.json(exJourneys)
 })
 
+
+app.post('/sign-in', (req, res) => {
+  console.log(req.body.body);
+  res.json(req.body);
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
