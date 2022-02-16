@@ -13,6 +13,7 @@ app.get('/journeys', (req, res) => {
   res.json(exJourneys)
 })
 
+
 app.post('/newJourneys', (req, res) =>{
   console.log(req.body.body)
   res.json(req.body)
@@ -26,6 +27,12 @@ app.post('/newJourneys', (req, res) =>{
       console.log('JSON data is written to the file successfully')
     }
   })
+
+
+app.post('/sign-in', (req, res) => {
+  console.log(req.body.body);
+  res.json(req.body);
+
 })
 
 app.listen(port, () => {
