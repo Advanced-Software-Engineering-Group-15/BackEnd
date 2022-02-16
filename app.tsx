@@ -11,7 +11,7 @@ app.get('/journeys', (req, res) => {
   const exJourneys = require('./exJourneys.json');
   console.log(exJourneys)
   res.json(exJourneys)
-})
+});
 
 
 app.post('/newJourneys', (req, res) =>{
@@ -27,15 +27,15 @@ app.post('/newJourneys', (req, res) =>{
       console.log('JSON data is written to the file successfully')
     }
   })
-
+});
 
 app.post('/sign-in', (req, res) => {
   console.log(req.body.body);
   res.json(req.body);
 
-})
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+  console.log(`Example app listening at http://localhost:${port}`);
+});
 
