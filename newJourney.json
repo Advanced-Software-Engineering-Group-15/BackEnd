@@ -1,0 +1,25 @@
+{
+  "Journeys": [
+    {
+      "type": "Walk",
+      "start": "up the road",
+      "end": "down the road",
+      "currency": "£",
+      "cost": 6
+    },
+    {
+      "type": "Walk",
+      "start": "up the road",
+      "end": "down the road",
+      "currency": "£",
+      "cost": 6
+    },
+    {
+      "type": "Walk",
+      "start": "up the road",
+      "end": "down the road",
+      "currency": "£",
+      "cost": 10
+    }
+  ]
+}

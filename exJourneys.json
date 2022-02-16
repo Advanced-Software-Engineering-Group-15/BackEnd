@@ -1,129 +1,108 @@
 {
-    "exJourneys":
-    [
+  "exJourneys": [
+    {
+      "journeyID": "01",
+      "journeyType": "Group Taxi",
+      "journeyStart": [
         {
-            "journeyID": "01",
-            "journeyType": "Group Taxi",
-            "journeyStart": 
-            [
-                {
-                    "name": "Swans Curragha, Ashbourne, Co. Meath",
-                    "latitude": "53.5399601",
-                    "longitude": "-6.4446056"
-                }
-            ],
-            "journeyEnd": 
-            [
-                {
-                    "name": "Pillo Hotel, Ashbourne, Co. Meath",
-                    "latitude": "53.5260758", 
-                    "longitude": "-6.4160728"
-                    
-                }
-            ],
-            "pricing": 
-                [
-                    {
-                        "currency": "Euro",
-                        "quantity": 20
-                    }
-                ],
-            "creatorID": "42",
-            "creatorRating": "4.2"
-        },
-
-        {
-            "journeyID": "02",
-            "journeyType": "Walk",
-            "journeyStart": 
-            [
-                {
-                    "name": "Trinity College Dublin, Co. Dublin",
-                    "latitude": "3.3437967",
-                    "longitude": "6.2567656"
-                }
-            ],
-            "journeyEnd": 
-            [
-                {
-                    "name": "The Spire, O'Connell Street, Co. Dublin",
-                    "latitude": "53.3498146", 
-                    "longitude": "-6.2624465"
-                    
-                }
-            ],
-            "pricing": 
-                [
-                    {
-                        "currency": "Free",
-                        "quantity": 0
-                    }
-                ],
-            "creatorID": "4",
-            "creatorRating": "2.4"
-        },
-
-        {
-            "journeyID": "03",
-            "journeyType": "Driver-Passenger",
-            "journeyStart": 
-            [
-                {
-                    "name": "Duleek, Co. Meath",
-                    "latitude": "53.6547738",
-                    "longitude": "-6.4397277"
-                }
-            ],
-            "journeyEnd": 
-            [
-                {
-                    "name": "Halfords, Drogheda, Co. Louth",
-                    "latitude": "53.7018763", 
-                    "longitude": "-6.3823137,"
-                    
-                }
-            ],
-            "pricing": 
-                [
-                    {
-                        "currency": "US-Dollar",
-                        "quantity": 45
-                    }
-                ],
-            "creatorID": "8",
-            "creatorRating": "4.35"
-        },
-
-        {
-            "journeyID": "04",
-            "journeyType": "Group Taxi",
-            "journeyStart": 
-            [
-                {
-                    "name": "Costa Coffee, Dunshaughlin, Co. Meath",
-                    "latitude": "53.5132161",
-                    "longitude": "-6.5421522"
-                }
-            ],
-            "journeyEnd": 
-            [
-                {
-                    "name": "Insomnia Coffee Company, Navan, Co. Meath",
-                    "latitude": "53.6082545", 
-                    "longitude": "-6.7127324"
-                    
-                }
-            ],
-            "pricing": 
-                [
-                    {
-                        "currency": "Euro",
-                        "quantity": 10
-                    }
-                ],
-            "creatorID": "69",
-            "creatorRating": "5.0"
+          "name": "Swans Curragha, Ashbourne, Co. Meath",
+          "latitude": "53.5399601",
+          "longitude": "-6.4446056"
         }
-
-    ]
+      ],
+      "journeyEnd": [
+        {
+          "name": "Pillo Hotel, Ashbourne, Co. Meath",
+          "latitude": "53.5260758",
+          "longitude": "-6.4160728"
+        }
+      ],
+      "pricing": [
+        {
+          "currency": "Euro",
+          "quantity": 20
+        }
+      ],
+      "creatorID": "42",
+      "creatorRating": "4.2"
+    },
+    {
+      "journeyID": "02",
+      "journeyType": "Walk",
+      "journeyStart": [
+        {
+          "name": "Trinity College Dublin, Co. Dublin",
+          "latitude": "3.3437967",
+          "longitude": "6.2567656"
+        }
+      ],
+      "journeyEnd": [
+        {
+          "name": "The Spire, O'Connell Street, Co. Dublin",
+          "latitude": "53.3498146",
+          "longitude": "-6.2624465"
+        }
+      ],
+      "pricing": [
+        {
+          "currency": "Free",
+          "quantity": 0
+        }
+      ],
+      "creatorID": "4",
+      "creatorRating": "2.4"
+    },
+    {
+      "journeyID": "03",
+      "journeyType": "Driver-Passenger",
+      "journeyStart": [
+        {
+          "name": "Duleek, Co. Meath",
+          "latitude": "53.6547738",
+          "longitude": "-6.4397277"
+        }
+      ],
+      "journeyEnd": [
+        {
+          "name": "Halfords, Drogheda, Co. Louth",
+          "latitude": "53.7018763",
+          "longitude": "-6.3823137,"
+        }
+      ],
+      "pricing": [
+        {
+          "currency": "US-Dollar",
+          "quantity": 45
+        }
+      ],
+      "creatorID": "8",
+      "creatorRating": "4.35"
+    },
+    {
+      "journeyID": "04",
+      "journeyType": "Group Taxi",
+      "journeyStart": [
+        {
+          "name": "Costa Coffee, Dunshaughlin, Co. Meath",
+          "latitude": "53.5132161",
+          "longitude": "-6.5421522"
+        }
+      ],
+      "journeyEnd": [
+        {
+          "name": "Insomnia Coffee Company, Navan, Co. Meath",
+          "latitude": "53.6082545",
+          "longitude": "-6.7127324"
+        }
+      ],
+      "pricing": [
+        {
+          "currency": "Euro",
+          "quantity": 10
+        }
+      ],
+      "creatorID": "69",
+      "creatorRating": "5.0"
+    }
+  ]
 }
