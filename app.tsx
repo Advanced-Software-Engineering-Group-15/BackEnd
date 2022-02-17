@@ -23,12 +23,12 @@ app.post('/newJourneys', (req, res) =>{
   console.log(req.body.body)
   res.json(req.body)
   // res.end('Success')
-  const newJourney = require('./newJourney.json');
-  console.log(newJourney)
+  const exJourneys = require('./exJourneys.json');
+  console.log(exJourneys)
   const data = JSON.parse(req.body.body)
-  newJourney.Journeys.push(data)
+  exJourneys.exJourneys.push(data)
   console.log(data)
-  console.log(newJourney)
+  console.log(exJourneys)
   // fileSystem.writeFile("./newJourney.json", JSON.stringify(data), err=>{
   //   if(err){
   //     console.log("Error writing file" ,err)
@@ -36,7 +36,7 @@ app.post('/newJourneys', (req, res) =>{
   //     console.log('JSON data is written to the file successfully')
   //   }
   // })
-  fileSystem.writeFile("./newJourney.json", JSON.stringify(newJourney, null, 2), err=>{
+  fileSystem.writeFile("./exJourneys.json", JSON.stringify(exJourneys, null, 2), err=>{
     if(err){
       console.log("Error writing file" ,err)
     } else {
