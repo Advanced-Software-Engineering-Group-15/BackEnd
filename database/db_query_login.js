@@ -14,8 +14,8 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
   var sql = "SELECT * FROM userAccountInfo WHERE username = ?";
-  var input_username = "Vanilla"
-  var input_password = "password3"
+  var input_username = user.userName;
+  var input_password = user.password;
   con.query(sql, [input_username], function (err, result) {
     if (err) {
 		//This is is username is not found in Database 
@@ -29,7 +29,6 @@ con.connect(function(err) {
       console.log("Successful password")
     }
     //Return Allow to login flag 
-	
-	
+
   });
 });
