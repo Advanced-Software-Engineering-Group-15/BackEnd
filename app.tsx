@@ -1,5 +1,3 @@
-import { resolve } from "path/posix";
-
 const dataBaseHelper = require('./database/db_checkCredentials')
 
 const express = require('express')
@@ -20,19 +18,30 @@ app.post('/sign-in', (req, res) => {
   const data = JSON.parse(req.body.body)
   console.log(data);
   const db = new dataBaseHelper(data.userName, data.password)
-
-  const loginStatus = new Promise((resolve, reject) => {
-    try{resolve(db.isValidCreds)}
-    catch{reject(false)}
-  }).then((status) => {
-    console.log("Login status sent to frontend is: ", status);
+  db.isValidCreds().then(() => {
+    console.log("Login status sent to frontend is: ", db.getStatus);
     const response = {
-      isLoginSuccessful: status
+      isLoginSuccessful: db.getStatus
     }
-    res.json(response); 
-  });
+    return response;
+  }).then((response) => {
+    res.json(response)
+  })
 })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+/*
+const db = new dataBaseHelper('Tester', 'password')
+db.isValidCreds().then(() => {
+  console.log("Login status sent to frontend is: ", db.getStatus);
+  const response = {
+    isLoginSuccessful: db.getStatus
+  }
+  return response;
+}).then((response) => {
+  console.log('response sent to server is: ', response);
+})
+*/

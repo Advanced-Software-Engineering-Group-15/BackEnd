@@ -1,13 +1,16 @@
+const { runInThisContext } = require('vm');
+
 class dataBaseHelper {
 
     constructor(userName, password){
         this.userName = userName.toString();
         this.password = password.toString();
         this.mysql = require('mysql');
+        this.status = new Boolean();
     }
 
     //returns true or false if credentials are in database
-    get isValidCreds() {
+    async isValidCreds() {
         var sql = "SELECT * FROM userAccountInfo WHERE username = ?";
         console.log("Querying database: Username: ", this.userName, ", Password: ", this.password);
         const con = this.mysql.createConnection({
@@ -23,24 +26,34 @@ class dataBaseHelper {
             password: this.password
         };
 
-        con.connect(function(err) {
-            if (err) throw err;
-            console.log("Connected!");
-            con.query(sql, [user.userName], function (err, result) {
-                if (err) {
-                    //This is is username is not found in Database 
-                    console.log("This username is not present: ", user.userName);
-                    return false;
-                }
-                // If Username found in Database
-                console.log("Found User: ", user.userName);
-                if (result[0].password == user.password){
-                    console.log("Successful password")
-                    return true;
-                }
-                return false;
+        await new Promise((resolve) => {
+            con.connect(function(err) {
+                if (err) throw err;
+                console.log("Connected!");
+                con.query(sql, [user.userName], function (err, result) {
+                    if (err) {
+                        //This is is username is not found in Database 
+                        console.log("This username is not present: ", user.userName);
+                        resolve(false)
+                    }
+                    // If Username found in Database
+                    console.log("Found User: ", user.userName);
+                    if (result[0].password == user.password){
+                        console.log("Valid password for ", user.userName)
+                        resolve(true)
+                    }
+                    resolve(false)
+                });
             });
-        });
+        }).then((status) => {
+            console.log('Is login details valid? ', status);
+            this.status = status;
+            return this.getStatus;
+        })
+    }
+
+    get getStatus(){
+        return this.status;
     }
 }
     
