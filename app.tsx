@@ -29,6 +29,11 @@ app.post('/sign-in', (req, res) => {
   })
 })
 
+app.post('/new-user', (req, res) => {
+  console.log(req.body.body);
+  res.json(req.body);
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
