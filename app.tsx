@@ -13,7 +13,6 @@ app.get('/journeys', (req, res) => {
   res.json(exJourneys)
 })
 
-
 app.post('/sign-in', (req, res) => {
   const data = JSON.parse(req.body.body)
   console.log(data);

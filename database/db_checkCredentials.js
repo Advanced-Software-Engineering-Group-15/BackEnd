@@ -1,4 +1,3 @@
-const { runInThisContext } = require('vm');
 
 class dataBaseHelper {
 
@@ -34,15 +33,22 @@ class dataBaseHelper {
                     if (err) {
                         //This is is username is not found in Database 
                         console.log("This username is not present: ", user.userName);
-                        resolve(false)
+                        return resolve(false)
+                    }
+                    if (result[0] == undefined){
+                        console.log("result is undefined");    
+                        return resolve(false)
                     }
                     // If Username found in Database
                     console.log("Found User: ", user.userName);
                     if (result[0].password == user.password){
                         console.log("Valid password for ", user.userName)
-                        resolve(true)
+                        return resolve(true)
                     }
-                    resolve(false)
+                    else{
+                        return resolve(false)
+                    }
+                  
                 });
             });
         }).then((status) => {
