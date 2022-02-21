@@ -1,11 +1,51 @@
 
 class dataBaseHelper {
 
-    constructor(userName, password){
-        this.userName = userName.toString();
-        this.password = password.toString();
+    constructor(props){
+        this.userName = props.userName.toString();
+        this.password = props.password.toString();
+        this.email = props.email.toString();
+        this.name = props.name.toString();
+        this.rating = Number(props.rating);
+        this.userId = props.userId.toString(); //may or may not be a number or string
         this.mysql = require('mysql');
         this.status = new Boolean();
+    }
+
+    async insertIntoDatabase() {
+        var sql = "INSERT INTO userAccountInfo (name, username, email, password, rating) VALUES ?";
+        console.log("Adding to database: name: ", this.name, ", username: ", this.userName, ", email: ",this.email, ", password: ",this.password, ", rating: ",this.rating)
+        
+        var con = this.mysql.createConnection({
+            host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+            port: 3306,
+            user: "masterUsername",
+            password: "password",
+            database: "User_Information_Database"
+        });
+        var values = [
+            [this.name, this.userName, this.email, this.password, this.rating]
+        ];
+        await new Promise((resolve) => {
+            con.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected!");
+            console.log(values);
+            con.query(sql, [values], function (err, result) {
+                if (err) throw err;
+                if (result == undefined){
+                    console.log("Could not insert into database")
+                    return resolve(false)
+                }
+                console.log("Number of records inserted: " + result.affectedRows);
+                return resolve(true)
+            });
+            });
+        }).then((status) => {
+            console.log('Is new user added to database ', status);
+            this.status = status;
+            return this.getStatus;
+        });
     }
 
     //returns true or false if credentials are in database

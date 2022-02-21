@@ -1,4 +1,4 @@
-const dataBaseHelper = require('./database/db_checkCredentials')
+const dataBaseHelper = require('./database/db_helper')
 
 const express = require('express')
 const app = express()
@@ -16,7 +16,17 @@ app.get('/journeys', (req, res) => {
 app.post('/sign-in', (req, res) => {
   const data = JSON.parse(req.body.body)
   console.log(data);
-  const db = new dataBaseHelper(data.userName, data.password)
+
+  const props = {
+    userName: data.userName.toString(),
+    password: data.password.toString(),
+    email: "",
+    name: "",
+    rating: "",
+    userId: ""
+  }
+
+  const db = new dataBaseHelper(props)
   db.isValidCreds().then(() => {
     console.log("Login status sent to frontend is: ", db.getStatus);
     const response = {
@@ -37,8 +47,23 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
+
 /*
-const db = new dataBaseHelper('Tester', 'password')
+const props = {
+  userName: 'TestUser',
+  password: 'testPassword',
+  email: "testEmail",
+  name: "banana",
+  rating: "4",
+  userId: ""
+};
+
+const db = new dataBaseHelper(props)
+
+db.insertIntoDatabase().then(() => {
+  console.log("Did this work?...", db.getStatus)
+})
+
 db.isValidCreds().then(() => {
   console.log("Login status sent to frontend is: ", db.getStatus);
   const response = {
