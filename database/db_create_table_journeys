@@ -1,0 +1,20 @@
+// This is run once. It creates a table. Once run, a new table is made on the AWS database
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+    host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+    port: 3306,
+    user: "masterUsername",
+    password: "password",
+   database: "User_Information_Database"
+});
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    var sql = "CREATE TABLE journeyListFormat (journeyID VARCHAR(255) PRIMARY KEY, journeyType VARCHAR(255), startName VARCHAR(255), startLat DECIMAL(8,6), startLong DECIMAL(8,6),  endName VARCHAR(255), endLat DECIMAL(8,6), endLong DECIMAL(8,6), currency VARCHAR(255), cost FLOAT, creatorID VARCHAR(255), creatorRating FLOAT)";
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("Table created");
+    });
+  });
