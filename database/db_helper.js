@@ -12,6 +12,7 @@ class dataBaseHelper {
         this.status = new Boolean();
     }
 
+    //add props to database, set status as true or false if operation was successful
     async insertIntoDatabase() {
         var sql = "INSERT INTO userAccountInfo (name, username, email, password, rating) VALUES ?";
         console.log("Adding to database: name: ", this.name, ", username: ", this.userName, ", email: ",this.email, ", password: ",this.password, ", rating: ",this.rating)
@@ -48,7 +49,7 @@ class dataBaseHelper {
         });
     }
 
-    //returns true or false if credentials are in database
+    //checks if credentials are in database, sets status true or false depending
     async isValidCreds() {
         var sql = "SELECT * FROM userAccountInfo WHERE username = ?";
         console.log("Querying database: Username: ", this.userName, ", Password: ", this.password);
@@ -98,6 +99,7 @@ class dataBaseHelper {
         })
     }
 
+    //gets the status of the last query, whether its true or false
     get getStatus(){
         return this.status;
     }
