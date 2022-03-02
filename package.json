@@ -17,14 +17,10 @@
   },
   "homepage": "https://github.com/Advanced-Software-Engineering-Group-15/BackEnd#readme",
   "dependencies": {
-<<<<<<< HEAD
     "babel": "^6.23.0",
-    "express": "^4.17.1",
-=======
     "body-parser": "^1.19.2",
     "express": "^4.17.2",
     "fs": "^0.0.1-security",
->>>>>>> origin/master
     "mysql": "^2.18.1"
   }
 }
