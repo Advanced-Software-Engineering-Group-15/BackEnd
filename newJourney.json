@@ -1,0 +1,208 @@
+{
+  "Journeys": [
+    {
+      "type": "Walk",
+      "start": "up the road",
+      "end": "down the road",
+      "currency": "£",
+      "cost": 6
+    },
+    {
+      "type": "Walk",
+      "start": "up the road",
+      "end": "down the road",
+      "currency": "£",
+      "cost": 6
+    },
+    {
+      "type": "Walk",
+      "start": "up the road",
+      "end": "down the road",
+      "currency": "£",
+      "cost": 10
+    },
+    {
+      "type": "Walk",
+      "start": "blah",
+      "end": "blah",
+      "currency": "£",
+      "cost": 3
+    },
+    {
+      "journeyID": "51313ab1-8f4c-11ec-b491-1b8471890b0f",
+      "journeyType": "Cycle",
+      "journeyStart": {
+        "name": "hello",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "hi",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "£",
+        "quantity": 5
+      },
+      "creatorRating": "2.5"
+    },
+    {
+      "journeyID": "99c19592-8f4c-11ec-b491-1b8471890b0f",
+      "journeyType": "",
+      "journeyStart": {
+        "name": "",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "$",
+        "quantity": 0
+      },
+      "creatorRating": "2.5"
+    },
+    {
+      "journeyID": "faa497e4-8f4c-11ec-b491-1b8471890b0f",
+      "journeyType": "",
+      "journeyStart": {
+        "name": "",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "$",
+        "quantity": 0
+      },
+      "creatorRating": "2.5"
+    },
+    {
+      "journeyID": "18caf256-8f4d-11ec-b491-1b8471890b0f",
+      "journeyType": "",
+      "journeyStart": {
+        "name": "",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "$",
+        "quantity": 0
+      },
+      "creatorRating": "2.5"
+    },
+    {
+      "journeyID": "26ae8cb7-8f4d-11ec-b491-1b8471890b0f",
+      "journeyType": "",
+      "journeyStart": {
+        "name": "",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "$",
+        "quantity": 0
+      },
+      "creatorID": "bert",
+      "creatorRating": "2.5"
+    },
+    {
+      "journeyID": "9e03ddb9-8f4d-11ec-b491-1b8471890b0f",
+      "journeyType": "",
+      "journeyStart": {
+        "name": "hi",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "low",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "$",
+        "quantity": 4
+      },
+      "creatorID": "wagwan",
+      "creatorRating": "2.5"
+    },
+    {
+      "journeyID": "9e03ddb9-8f4d-11ec-b491-1b8471890b0f",
+      "journeyType": "",
+      "journeyStart": {
+        "name": "hi",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "low",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "$",
+        "quantity": 4
+      },
+      "creatorID": "wagwan",
+      "creatorRating": "2.5"
+    },
+    {
+      "journeyID": "dbcf435a-8f4d-11ec-b491-1b8471890b0f",
+      "journeyType": "",
+      "journeyStart": {
+        "name": "",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "$",
+        "quantity": 0
+      },
+      "creatorID": "wagwan",
+      "creatorRating": "2.5"
+    },
+    {
+      "journeyID": "7de6f88b-8f4f-11ec-b491-1b8471890b0f",
+      "journeyType": "Drive",
+      "journeyStart": {
+        "name": "firstCreateTest",
+        "latitude": "53.5399601",
+        "longitude": "6.4446056"
+      },
+      "journeyEnd": {
+        "name": "firstCreateTest",
+        "latitude": "53.5260758",
+        "longitude": "-6.4160728"
+      },
+      "pricing": {
+        "currency": "€",
+        "quantity": 40
+      },
+      "creatorID": "wagwan",
+      "creatorRating": "2.5"
+    }
+  ]
+}
