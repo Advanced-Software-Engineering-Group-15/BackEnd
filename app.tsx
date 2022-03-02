@@ -19,8 +19,6 @@ app.get('/journeys', (req, res) => {
 });
 
 
-<<<<<<< HEAD
-=======
 app.post('/newJourneys', (req, res) =>{
   console.log(req.body.body)
   res.json(req.body)
@@ -36,7 +34,6 @@ app.post('/newJourneys', (req, res) =>{
   })
 });
 
->>>>>>> origin/master
 app.post('/sign-in', (req, res) => {
   const data = JSON.parse(req.body.body)
   console.log(data);
@@ -69,7 +66,6 @@ app.post('/new-user', (req, res) => {
 });
 
 app.listen(port, () => {
-<<<<<<< HEAD
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
@@ -100,8 +96,3 @@ db.isValidCreds().then(() => {
   console.log('response sent to server is: ', response);
 })
 */
-=======
-  console.log(`Example app listening at http://localhost:${port}`);
-});
-
->>>>>>> origin/master
