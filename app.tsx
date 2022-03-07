@@ -2,7 +2,8 @@ const dataBaseHelper = require('./database/db_helper')
 
 const express = require('express')
 const app = express()
-const port = 5000
+const port = 443
+//const port = 5000 //for localhost
 var bodyParser = require('body-parser');
 const fileSystem = require("fs");
 var mysql = require('mysql');
