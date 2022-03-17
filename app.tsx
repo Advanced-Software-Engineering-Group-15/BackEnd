@@ -31,16 +31,15 @@ app.get('/journeys', (req, res) => {
   res.json(exJourneys)
 });
 
-app.get('/createdJourneys', (req, res) => {
-  const newJourney = require('./newJourney.json');
-  console.log(newJourney)
-  res.json(newJourney)
-});
+// app.get('/createdJourneys', (req, res) => {
+//   const newJourney = require('./newJourney.json');
+//   console.log(newJourney)
+//   res.json(newJourney)
+// });
 
 app.post('/newJourneys', (req, res) =>{
   console.log(req.body.body)
   res.json(req.body)
-  // res.end('Success')
   const exJourneys = require('./exJourneys.json');
   console.log(exJourneys)
   const data = JSON.parse(req.body.body)
@@ -84,15 +83,12 @@ app.post('/newJourneys', (req, res) =>{
   console.log(currValues)
   values[0] = currValues;
   console.log(values)
-  // var values = [
-  //   ['tester', 'Tester', 'tester@test.com', 'password', 4.0 ],
-  //   ['tester_2','Tester_2', 'secondTester@test.com', 'password2', 3.5 ],
-  //   ['Vanilla_Dreams', 'Vanilla', 'vanillaDreams@dream.com', 'password3', 4.8]
-  // ];
-  con.query(sql, [values], function (err, result) {
-    if (err) throw err;
-    console.log("Number of records inserted: " + result.affectedRows);
-  });
+
+  // con.query(sql, [values], function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Number of records inserted: " + result.affectedRows);
+  // });
+  
   fileSystem.writeFile("./exJourneys.json", JSON.stringify(exJourneys, null, 2), err=>{
     if(err){
       console.log("Error writing file" ,err)
