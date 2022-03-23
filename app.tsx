@@ -6,29 +6,53 @@ const port = 443
 //const port = 5000 //for localhost
 var bodyParser = require('body-parser');
 const fileSystem = require("fs");
-var mysql = require('mysql');
+// var mysql = require('mysql');
 
+const props = {
+  userName: "",
+  password: "",
+  email: "",
+  name: "",
+  rating: "",
+  userId: "",
+  journeyID: "",
+  journeyType: "",
+  startName: "",
+  startLat: "",
+  startLong: "",
+  endName: "",
+  endLat: "",
+  endLong: "",
+  currency: "",
+  cost: "",
+  creatorID: "", 
+  creatorRating: "",
+}
 
-var con = mysql.createConnection({
-  host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
-  port: 3306,
-  user: "masterUsername",
-  password: "password",
-  database: "User_Information_Database"
-});
+// var con = mysql.createConnection({
+//   host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+//   port: 3306,
+//   user: "masterUsername",
+//   password: "password",
+//   database: "User_Information_Database"
+// });
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/journeys', (req, res) => {
+
+  const db = new dataBaseHelper(props)
+  db.getAllJourneys() //.then(() => {
   const exJourneys = require('./exJourneys.json');
   console.log(exJourneys)
-  res.json(exJourneys)
+  res.json(exJourneys)  
+  //});
 });
 
 // app.get('/createdJourneys', (req, res) => {
@@ -38,62 +62,53 @@ app.get('/journeys', (req, res) => {
 // });
 
 app.post('/newJourneys', (req, res) =>{
-  console.log(req.body.body)
-  res.json(req.body)
   const exJourneys = require('./exJourneys.json');
   console.log(exJourneys)
   const data = JSON.parse(req.body.body)
   exJourneys.exJourneys.push(data)
   console.log(data)
   console.log(exJourneys)
-  // fileSystem.writeFile("./newJourney.json", JSON.stringify(data), err=>{
-  //   if(err){
-  //     console.log("Error writing file" ,err)
-  //   } else {
-  //     console.log('JSON data is written to the file successfully')
-  //   }
-  // })
 
-  /// get all records from mySQL table
-  var sql = "INSERT INTO journeyListFormat (journeyID, journeyType, startName, startLat, startLong, endName, endLat, endLong, currency, cost, creatorID, creatorRating) VALUES ?";
-  //const exJourneys = require('../exJourneys.json');
-  //console.log(exJourneys)
-  //console.log(exJourneys.exJourneys.length)
-  var values = []
-  console.log("data: ")
-  console.log(data)
   var currJourney = data;
-  console.log("currJourney: ")
-  console.log(currJourney)
-  var currValues = [
-    currJourney.journeyID,
-    currJourney.journeyType,
-    currJourney.journeyStart.name,
-    currJourney.journeyStart.latitude,
-    currJourney.journeyStart.longitude,
-    currJourney.journeyEnd.name,
-    currJourney.journeyEnd.latitude,
-    currJourney.journeyEnd.longitude,
-    currJourney.pricing.currency,
-    currJourney.pricing.quantity,
-    currJourney.creatorID,
-    currJourney.creatorRating
-  ];
-  console.log("currValues: ")
-  console.log(currValues)
-  values[0] = currValues;
-  console.log(values)
 
-  // con.query(sql, [values], function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Number of records inserted: " + result.affectedRows);
-  // });
-  
-  fileSystem.writeFile("./exJourneys.json", JSON.stringify(exJourneys, null, 2), err=>{
-    if(err){
-      console.log("Error writing file" ,err)
-    } else {
-      console.log('JSON data is written to exJourneys file successfully')
+  const props = {
+    userName: "",
+    password: "",
+    email: "",
+    name: "",
+    rating: "",
+    userId: "",
+    journeyID: currJourney.journeyID,
+    journeyType: currJourney.journeyType,
+    startName: currJourney.journeyStart.name,
+    startLat: currJourney.journeyStart.latitude,
+    startLong: currJourney.journeyStart.longitude,
+    endName: currJourney.journeyEnd.name,
+    endLat: currJourney.journeyEnd.latitude,
+    endLong: currJourney.journeyEnd.longitude,
+    currency: currJourney.pricing.currency,
+    cost: currJourney.pricing.quantity,
+    creatorID: currJourney.creatorID, 
+    creatorRating: currJourney.creatorRating,
+  }
+
+  const db = new dataBaseHelper(props)
+  db.insertJourneyIntoDatabase().then(() => {
+    console.log("Login status sent to frontend is: ", db.getStatus);
+    const response = {
+      isJourneyAddedToTable: db.getStatus
+    }
+    return response;
+  }).then((response) => {
+    res.json(response)
+    if (response.isJourneyAddedToTable){
+      fileSystem.writeFile("./exJourneys.json", JSON.stringify(exJourneys, null, 2), err=>{
+        if(err){
+          console.log("Error writing file" ,err)
+        } else {
+          console.log('JSON data is written to exJourneys file successfully')
+        }
+      })
     }
   })
 });
@@ -108,7 +123,19 @@ app.post('/sign-in', (req, res) => {
     email: "",
     name: "",
     rating: "",
-    userId: ""
+    userId: "",
+    journeyID: "",
+    journeyType: "",
+    startName: "",
+    startLat: "",
+    startLong: "",
+    endName: "",
+    endLat: "",
+    endLong: "",
+    currency: "",
+    cost: "",
+    creatorID: "", 
+    creatorRating: "",
   }
 
   const db = new dataBaseHelper(props)

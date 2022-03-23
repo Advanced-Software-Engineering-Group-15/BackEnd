@@ -1,5 +1,60 @@
 {
   "exJourneys": [
-    
+    {
+      "journeyID": "01665eb6-aac8-11ec-915f-35b350ba82f9",
+      "journeyType": "DRIVING",
+      "startName": "Kelly's Resort Hotel & Spa, Doogans Warren, Rosslare, County Wexford, Ireland",
+      "startLat": 52.275497,
+      "startLong": -6.387777,
+      "endName": "Skryne Castle, Skreen, Skryne, County Meath, Ireland",
+      "endLat": 53.582909,
+      "endLong": -6.561491,
+      "currency": "$",
+      "cost": 2,
+      "creatorID": "TestUser",
+      "creatorRating": 2.5
+    },
+    {
+      "journeyID": "5cea1ab8-aac8-11ec-915f-35b350ba82f9",
+      "journeyType": "BICYCLING",
+      "startName": "Muher, County Kerry, Ireland",
+      "startLat": 52.49355,
+      "startLong": -9.39772,
+      "endName": "Baltrasna Road, Baltrasna, Ashbourne, County Meath, Ireland",
+      "endLat": 53.489157,
+      "endLong": -6.398064,
+      "currency": "$",
+      "cost": 0,
+      "creatorID": "TestUser",
+      "creatorRating": 2.5
+    },
+    {
+      "journeyID": "97d52414-aac5-11ec-915f-35b350ba82f9",
+      "journeyType": "WALKING",
+      "startName": "Skryne, County Meath, Ireland",
+      "startLat": 53.58598,
+      "startLong": -6.56215,
+      "endName": "Trim, County Meath, Ireland",
+      "endLat": 53.552367,
+      "endLong": -6.786647,
+      "currency": "$",
+      "cost": 0,
+      "creatorID": "TestUser",
+      "creatorRating": 2.5
+    },
+    {
+      "journeyID": "fa6f53a2-aac2-11ec-915f-35b350ba82f9",
+      "journeyType": "DRIVING",
+      "startName": "Ashbourne, County Meath, Ireland",
+      "startLat": 53.511162,
+      "startLong": -6.397382,
+      "endName": "Ashbourne Rugby Club, Milltown Road, Archerstown Wood, Ashbourne, County Meath, Ireland",
+      "endLat": 53.511823,
+      "endLong": -6.37911,
+      "currency": "$",
+      "cost": 69,
+      "creatorID": "TestUser",
+      "creatorRating": 2.5
+    }
   ]
 }
