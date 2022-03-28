@@ -9,7 +9,7 @@ class dataBaseHelper {
         this.password = props.password.toString();
         this.email = props.email.toString();
         this.name = props.name.toString();
-        this.rating = Number(props.rating);
+        this.rating = props.rating.toString();
         this.userId = props.userId.toString(); //may or may not be a number or string
         this.journeyID = props.journeyID.toString();
         this.journeyType = props.journeyType.toString();

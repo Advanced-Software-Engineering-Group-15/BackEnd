@@ -151,11 +151,56 @@ app.post('/sign-in', (req, res) => {
 })
 
 app.post('/new-user', (req, res) => {
-  console.log(req.body.body);
-  res.json(req.body);
+  const data = JSON.parse(req.body.body)
+  console.log(data);
+
+
+  // var json_data = {
+  //   "firstName": newUser_json.firstName,
+  //   "familyName": newUser_json.familyName,
+  //   "phoneNumber": newUser_json.phoneNumber,
+  //   "emailAddress": newUser_json.emailAddress,
+  //   "homeAddress": newUser_json.homeAddress,
+  //   "userName": newUser_json.firstName.concat('-', newUser_json.familyName),
+  //   "password": newUser_json.password,
+  //   "repeated_password": newUser_json.repeated_password,
+  //   "userID": newUser_json.userID,
+  // }
+
+  const props = {
+    userName: data.userName.toString(),
+    password: data.repeated_password.toString(),
+    email: data.emailAddress.toString(),
+    name: (data.firstName+data.familyName).toString(),
+    rating: "3".toString(),
+    userId: "",
+    journeyID: "",
+    journeyType: "",
+    startName: "",
+    startLat: "",
+    startLong: "",
+    endName: "",
+    endLat: "",
+    endLong: "",
+    currency: "",
+    cost: "",
+    creatorID: "", 
+    creatorRating: "",
+  }
+
+  const db = new dataBaseHelper(props)
+  db.insertIntoDatabase.then(() => {
+    console.log("Is user created in database: ", db.getStatus);
+    const response = {
+      isUserInDatabase: db.getStatus
+    }
+    return response; 
+  }).then((response) => {
+    res.json(response);
+  });
 
 });
-
+ 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
