@@ -154,19 +154,6 @@ app.post('/new-user', (req, res) => {
   const data = JSON.parse(req.body.body)
   console.log(data);
 
-
-  // var json_data = {
-  //   "firstName": newUser_json.firstName,
-  //   "familyName": newUser_json.familyName,
-  //   "phoneNumber": newUser_json.phoneNumber,
-  //   "emailAddress": newUser_json.emailAddress,
-  //   "homeAddress": newUser_json.homeAddress,
-  //   "userName": newUser_json.firstName.concat('-', newUser_json.familyName),
-  //   "password": newUser_json.password,
-  //   "repeated_password": newUser_json.repeated_password,
-  //   "userID": newUser_json.userID,
-  // }
-
   const props = {
     userName: data.userName.toString(),
     password: data.repeated_password.toString(),
@@ -187,6 +174,7 @@ app.post('/new-user', (req, res) => {
     creatorID: "", 
     creatorRating: "",
   }
+
 
   const db = new dataBaseHelper(props)
   db.insertIntoDatabase.then(() => {
