@@ -175,9 +175,8 @@ app.post('/new-user', (req, res) => {
     creatorRating: "",
   }
 
-
   const db = new dataBaseHelper(props)
-  db.insertIntoDatabase.then(() => {
+  db.insertIntoDatabase().then(() => {
     console.log("Is user created in database: ", db.getStatus);
     const response = {
       isUserInDatabase: db.getStatus
