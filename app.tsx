@@ -141,10 +141,26 @@ app.post('/sign-in', (req, res) => {
   const db = new dataBaseHelper(props)
   db.isValidCreds().then(() => {
     console.log("Login status sent to frontend is: ", db.getStatus);
-    const response = {
-      isLoginSuccessful: db.getStatus
+    if(db.getStatus){
+      var user_props = db.getUserInfo
     }
+    else{
+      var user_props = {
+        'username': '',
+        'email': '', 
+        'name': '',
+        'rating': '',
+        'userID': ''
+      }
+    }
+
+    const response = {
+      isLoginSuccessful: db.getStatus,
+      userProps: user_props
+    }
+    console.log(response)
     return response;
+
   }).then((response) => {
     res.json(response)
   })
