@@ -187,6 +187,31 @@ app.post('/new-user', (req, res) => {
   });
 
 });
+
+app.post('/newPassenger', (req, res) =>{
+  const data = JSON.parse(req.body.body)
+  console.log(data)
+
+  var currJourney = data;
+
+  const props = {
+    journeyID: currJourney.journeyID,
+    creatorID: currJourney.creatorID, 
+    userId: currJourney.userID
+  }
+
+  const db = new dataBaseHelper(props)
+  db.insertPassengerIntoDatabase().then(() => {
+    console.log("Passenger addition status is: ", db.getStatus);
+    const response = {
+      isPassengerAddedToTable: db.getStatus
+    }
+    return response;
+  }).then((response) => {
+    res.json(response)
+  })
+});
+
  
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

@@ -215,6 +215,44 @@ class dataBaseHelper {
         })
     }
 
+    async insertPassengerIntoDatabase() {
+        var sql = "INSERT INTO addingUsers (journeyID, creatorID, userID) VALUES ?";
+        console.log("Adding to database: journeyID: ", this.journeyID, "creatorID: ", this.creatorID)
+        //(journeyID, journeyType, startName, startLat, startLong, endName, endLat, endLong, currency, cost, creatorID, creatorRating)
+        var con = this.mysql.createConnection({
+            host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+            port: 3306,
+            user: "masterUsername",
+            password: "password",
+            database: "User_Information_Database"
+        });
+        var values = [
+            [   this.journeyID,
+                this.creatorID,
+                this.userId
+            ]
+        ];
+        await new Promise((resolve) => {
+            con.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected!");
+            console.log(values);
+            con.query(sql, [values], function (err, result) {
+                if (err) throw err;
+                if (result == undefined){
+                    console.log("Could not insert into database")
+                    return resolve(false)
+                }
+                console.log("Number of records inserted: " + result.affectedRows);
+                return resolve(true)
+            });
+            });
+        }).then((status) => {
+            console.log('Is new journey added to database ', status);
+            this.status = status;
+            return this.getStatus;
+        });
+    }
     //gets the status of the last query, whether its true or false
     get getStatus(){
         return this.status;
