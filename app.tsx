@@ -80,17 +80,31 @@ app.post('/newJourneys', (req, res) =>{
     userId: "",
     journeyID: currJourney.journeyID,
     journeyType: currJourney.journeyType,
-    startName: currJourney.journeyStart.name,
-    startLat: currJourney.journeyStart.latitude,
-    startLong: currJourney.journeyStart.longitude,
-    endName: currJourney.journeyEnd.name,
-    endLat: currJourney.journeyEnd.latitude,
-    endLong: currJourney.journeyEnd.longitude,
-    currency: currJourney.pricing.currency,
-    cost: currJourney.pricing.quantity,
+    startName: currJourney.startName,
+    startLat: currJourney.startLat,
+    startLong: currJourney.startLong,
+    endName: currJourney.endName,
+    endLat: currJourney.endLat,
+    endLong: currJourney.endLong,
+    currency: currJourney.currency,
+    cost: currJourney.cost,
     creatorID: currJourney.creatorID, 
     creatorRating: currJourney.creatorRating,
   }
+
+  // "journeyID": "af694b82-ab8b-11ec-82b4-4f2f17d3e634",
+  // "journeyType": "DRIVING",
+  // "startName": "Dundrum Town Centre, Sandyford Road, Dundrum, Dublin 16, Ireland",
+  // "startLat": 53.286982,
+  // "startLong": -6.242252,
+  // "endName": "Sandyford, Dublin, Ireland",
+  // "endLat": 53.27897,
+  // "endLong": -6.216343,
+  // "currency": "$",
+  // "cost": 7,
+  // "creatorID": "Tester",
+  // "creatorRating": 2.5,
+  // "Participants": null
 
   const db = new dataBaseHelper(props)
   db.insertJourneyIntoDatabase().then(() => {
@@ -192,7 +206,7 @@ app.post('/new-user', (req, res) => {
   }
 
   const db = new dataBaseHelper(props)
-  db.insertIntoDatabase().then(() => {
+  db.insertUserIntoDatabase().then(() => {
     console.log("Is user created in database: ", db.getStatus);
     const response = {
       isUserInDatabase: db.getStatus
@@ -201,6 +215,15 @@ app.post('/new-user', (req, res) => {
   }).then((response) => {
     res.json(response);
   });
+
+});
+
+app.post('/add-to-journey', (req, res) => {
+
+  //get journey and userid from frontend
+  //query database for journey
+  //add userid to participants column, insert into database
+  //return response
 
 });
  

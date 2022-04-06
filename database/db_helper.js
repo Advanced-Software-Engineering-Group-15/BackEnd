@@ -30,7 +30,7 @@ class dataBaseHelper {
     }
 
     //add props to database, set status as true or false if operation was successful
-    async insertIntoDatabase() {
+    async insertUserIntoDatabase() {
         var sql = "INSERT INTO userAccountInfo (name, username, email, password, rating) VALUES ?";
         console.log("Adding to database: name: ", this.name, ", username: ", this.userName, ", email: ",this.email, ", password: ",this.password, ", rating: ",this.rating)
         
@@ -235,7 +235,7 @@ class dataBaseHelper {
         await new Promise((resolve) => {
             con.connect(function(err) {
                 if (err) throw err;
-                console.log("Connected!");
+                console.log("Connected for get all journeys!");
                 con.query(sql, function (err, result) {
                     if (err) {
                         console.log("Database can't be accessed: ");
@@ -245,7 +245,7 @@ class dataBaseHelper {
                         console.log("result is undefined");    
                         return resolve(false)
                     }
-                    console.log("Found data: ", result);
+                    console.log("Found get all journeys data: ", result);
                     if (result){
                         const exJourneys = { "exJourneys": [] };
 
