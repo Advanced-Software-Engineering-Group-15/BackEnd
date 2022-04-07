@@ -92,20 +92,6 @@ app.post('/newJourneys', (req, res) =>{
     creatorRating: currJourney.creatorRating,
   }
 
-  // "journeyID": "af694b82-ab8b-11ec-82b4-4f2f17d3e634",
-  // "journeyType": "DRIVING",
-  // "startName": "Dundrum Town Centre, Sandyford Road, Dundrum, Dublin 16, Ireland",
-  // "startLat": 53.286982,
-  // "startLong": -6.242252,
-  // "endName": "Sandyford, Dublin, Ireland",
-  // "endLat": 53.27897,
-  // "endLong": -6.216343,
-  // "currency": "$",
-  // "cost": 7,
-  // "creatorID": "Tester",
-  // "creatorRating": 2.5,
-  // "Participants": null
-
   const db = new dataBaseHelper(props)
   db.insertJourneyIntoDatabase().then(() => {
     console.log("Login status sent to frontend is: ", db.getStatus);
@@ -276,40 +262,8 @@ app.post('/add-to-journey', (req, res) => {
             
   })
 
-  //get journey and userid from frontend
-  //query database for journey
-  //add userid to participants column, insert into database
-  //return response
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-
-/*
-const props = {
-  userName: 'TestUser',
-  password: 'testPassword',
-  email: "testEmail",
-  name: "banana",
-  rating: "4",
-  userId: ""
-};
-
-const db = new dataBaseHelper(props)
-
-db.insertIntoDatabase().then(() => {
-  console.log("Did this work?...", db.getStatus)
-})
-
-db.isValidCreds().then(() => {
-  console.log("Login status sent to frontend is: ", db.getStatus);
-  const response = {
-    isLoginSuccessful: db.getStatus
-  }
-  return response;
-}).then((response) => {
-  console.log('response sent to server is: ', response);
-})
-*/
