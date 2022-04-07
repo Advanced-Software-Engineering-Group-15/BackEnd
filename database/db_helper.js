@@ -32,8 +32,8 @@ class dataBaseHelper {
 
     //add props to database, set status as true or false if operation was successful
     async insertUserIntoDatabase() {
-        var sql = "INSERT INTO userAccountInfo (name, username, email, password, rating) VALUES ?";
-        console.log("Adding to database: name: ", this.name, ", username: ", this.userName, ", email: ",this.email, ", password: ",this.password, ", rating: ",this.rating)
+        var sql = "INSERT INTO userAccountInfo (name, username, email, password, rating, capacity) VALUES ?";
+        console.log("Adding to database: name: ", this.name, ", username: ", this.userName, ", email: ",this.email, ", password: ",this.password, ", rating: ",this.rating, ", capacity: ", this.capacity)
         
         var con = this.mysql.createConnection({
             host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
@@ -43,7 +43,7 @@ class dataBaseHelper {
             database: "User_Information_Database"
         });
         var values = [
-            [this.name, this.userName, this.email, this.password, this.rating]
+            [this.name, this.userName, this.email, this.password, this.rating, this.capacity]
         ];
         await new Promise((resolve) => {
             con.connect(function(err) {
