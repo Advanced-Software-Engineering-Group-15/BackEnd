@@ -93,6 +93,7 @@ app.post('/newJourneys', (req, res) =>{
     capacity: currJourney.capacity,
     creatorRating: currJourney.creatorRating,
     departure_datetime: currJourney.departure_datetime,
+    journeyStatus: "Pending"
   }
 
   const db = new dataBaseHelper(props)
@@ -140,7 +141,8 @@ app.post('/sign-in', (req, res) => {
     creatorID: "", 
     creatorRating: "",
     capacity: "",
-    departure_datetime: ""
+    departure_datetime: "",
+    journeyStatus: ""
   }
 
   const db = new dataBaseHelper(props)
