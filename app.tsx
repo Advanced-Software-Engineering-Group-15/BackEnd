@@ -32,6 +32,7 @@ const props = {
   creatorRating: "",
   capacity: 0,
   departure_datetime: 'YYYY-MM-DD HH:MI:SS',
+  journeyStatus: '',
 }
 
 app.use(express.urlencoded({ extended: true }));
