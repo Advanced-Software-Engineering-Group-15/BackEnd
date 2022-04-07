@@ -1,12 +1,12 @@
+import { DATETIME } from "mysql/lib/protocol/constants/types";
+
 const dataBaseHelper = require('./database/db_helper')
 
 const express = require('express')
 const app = express()
 const port = 443
-//const port = 5000 //for localhost
 var bodyParser = require('body-parser');
 const fileSystem = require("fs");
-// var mysql = require('mysql');
 
 const props = {
   userName: "",
@@ -28,20 +28,8 @@ const props = {
   creatorID: "", 
   creatorRating: "",
   capacity: 0,
+  departure_datetime: DATETIME,
 }
-
-// var con = mysql.createConnection({
-//   host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
-//   port: 3306,
-//   user: "masterUsername",
-//   password: "password",
-//   database: "User_Information_Database"
-// });
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -49,18 +37,12 @@ app.use(express.json());
 app.get('/journeys', (req, res) => {
 
   const db = new dataBaseHelper(props)
-  db.getAllJourneys() //.then(() => {
+  db.getAllJourneys()
   const exJourneys = require('./exJourneys.json');
   console.log(exJourneys)
   res.json(exJourneys)  
-  //});
 });
 
-// app.get('/createdJourneys', (req, res) => {
-//   const newJourney = require('./newJourney.json');
-//   console.log(newJourney)
-//   res.json(newJourney)
-// });
 
 app.post('/newJourneys', (req, res) =>{
   const exJourneys = require('./exJourneys.json');
@@ -92,6 +74,7 @@ app.post('/newJourneys', (req, res) =>{
     creatorID: currJourney.creatorID, 
     capacity: currJourney.capacity,
     creatorRating: currJourney.creatorRating,
+    departure_datetime: currJourney.departure_datetime,
   }
 
   const db = new dataBaseHelper(props)
