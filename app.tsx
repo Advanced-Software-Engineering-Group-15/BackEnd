@@ -1,6 +1,7 @@
-import { DATETIME } from "mysql/lib/protocol/constants/types";
+// import { DATETIME } from "mysql/lib/protocol/constants/types";
 
 const dataBaseHelper = require('./database/db_helper')
+const toSQLDate = require('js-date-to-sql-datetime');
 
 const express = require('express')
 const app = express()
@@ -29,7 +30,7 @@ const props = {
   creatorID: "", 
   creatorRating: "",
   capacity: 0,
-  departure_datetime: DATETIME,
+  departure_datetime: '',
 }
 
 app.use(express.urlencoded({ extended: true }));
