@@ -243,7 +243,40 @@ app.post('/add-to-journey', (req, res) => {
     creatorRating: "",
   }
   console.log('props', props)
-
+  var sql = "INSERT INTO addUsers (journeyID, userID, creatorID) VALUES ?";
+        
+        var con = this.mysql.createConnection({
+            host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+            port: 3306,
+            user: "masterUsername",
+            password: "password",
+            database: "User_Information_Database"
+        });
+        var values = [
+            [   data.journeyID,
+                data.userID,
+                data.creatorID,
+             ]
+        ];
+        await new Promise((resolve) => {
+            con.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected!");
+            console.log(values);
+            con.query(sql, [values], function (err, result) {
+                if (err) throw err;
+                if (result == undefined){
+                    console.log("Could not insert into database")
+                    return resolve(false)
+                }
+                console.log("Number of records inserted: " + result.affectedRows);
+                console.log('Is new entry added to addingUSers database');
+                return resolve(true)
+            });
+            });
+        })
+           
+            
   })
 
   //get journey and userid from frontend
