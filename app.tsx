@@ -27,20 +27,11 @@ const props = {
   cost: "",
   creatorID: "", 
   creatorRating: "",
+  capacity: "",
+  departure_time: "",
+  departure_datetime: "",
+
 }
-
-// var con = mysql.createConnection({
-//   host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
-//   port: 3306,
-//   user: "masterUsername",
-//   password: "password",
-//   database: "User_Information_Database"
-// });
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -54,12 +45,6 @@ app.get('/journeys', (req, res) => {
   res.json(exJourneys)  
   //});
 });
-
-// app.get('/createdJourneys', (req, res) => {
-//   const newJourney = require('./newJourney.json');
-//   console.log(newJourney)
-//   res.json(newJourney)
-// });
 
 app.post('/newJourneys', (req, res) =>{
   const exJourneys = require('./exJourneys.json');
@@ -80,31 +65,22 @@ app.post('/newJourneys', (req, res) =>{
     userId: "",
     journeyID: currJourney.journeyID,
     journeyType: currJourney.journeyType,
-    startName: currJourney.startName,
-    startLat: currJourney.startLat,
-    startLong: currJourney.startLong,
-    endName: currJourney.endName,
-    endLat: currJourney.endLat,
-    endLong: currJourney.endLong,
-    currency: currJourney.currency,
-    cost: currJourney.cost,
+    startName: currJourney.journeyStart.name,
+    startLat: currJourney.journeyStart.latitude,
+    startLong: currJourney.journeyStart.longitude,
+    endName: currJourney.journeyEnd.name,
+    endLat: currJourney.journeyEnd.latitude,
+    endLong: currJourney.journeyEnd.longitude,
+    currency: currJourney.pricing.currency,
+    cost: currJourney.pricing.quantity,
     creatorID: currJourney.creatorID, 
     creatorRating: currJourney.creatorRating,
-  }
+    capacity: currJourney.capacity,
 
-  // "journeyID": "af694b82-ab8b-11ec-82b4-4f2f17d3e634",
-  // "journeyType": "DRIVING",
-  // "startName": "Dundrum Town Centre, Sandyford Road, Dundrum, Dublin 16, Ireland",
-  // "startLat": 53.286982,
-  // "startLong": -6.242252,
-  // "endName": "Sandyford, Dublin, Ireland",
-  // "endLat": 53.27897,
-  // "endLong": -6.216343,
-  // "currency": "$",
-  // "cost": 7,
-  // "creatorID": "Tester",
-  // "creatorRating": 2.5,
-  // "Participants": null
+    departure_time: currJourney.time.departureTime,
+    departure_datetime: currJourney.time.departureDate,
+    
+  }
 
   const db = new dataBaseHelper(props)
   db.insertJourneyIntoDatabase().then(() => {
@@ -206,7 +182,7 @@ app.post('/new-user', (req, res) => {
   }
 
   const db = new dataBaseHelper(props)
-  db.insertUserIntoDatabase().then(() => {
+  db.insertIntoDatabase().then(() => {
     console.log("Is user created in database: ", db.getStatus);
     const response = {
       isUserInDatabase: db.getStatus

@@ -24,6 +24,7 @@ class dataBaseHelper {
         this.cost = props.cost.toString();
         this.creatorID = props.creatorID.toString();
         this.creatorRating = props.creatorRating.toString();      
+        this.capacity = props.capacity;
         this.mysql = require('mysql');
         this.status = new Boolean();
         this.userInfo = {}
