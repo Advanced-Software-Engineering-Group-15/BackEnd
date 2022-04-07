@@ -235,6 +235,7 @@ app.post('/add-to-journey', (req, res) => {
     cost: "",
     creatorID: data.creatorID, 
     creatorRating: "",
+    departure_datetime: "",
     journeyStatus: data.journeyStatus,
   }
   console.log('props', props)
