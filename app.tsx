@@ -27,11 +27,20 @@ const props = {
   cost: "",
   creatorID: "", 
   creatorRating: "",
-  capacity: "",
-  departure_time: "",
-  departure_datetime: "",
-
 }
+
+// var con = mysql.createConnection({
+//   host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+//   port: 3306,
+//   user: "masterUsername",
+//   password: "password",
+//   database: "User_Information_Database"
+// });
+
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -45,6 +54,12 @@ app.get('/journeys', (req, res) => {
   res.json(exJourneys)  
   //});
 });
+
+// app.get('/createdJourneys', (req, res) => {
+//   const newJourney = require('./newJourney.json');
+//   console.log(newJourney)
+//   res.json(newJourney)
+// });
 
 app.post('/newJourneys', (req, res) =>{
   const exJourneys = require('./exJourneys.json');
@@ -75,11 +90,6 @@ app.post('/newJourneys', (req, res) =>{
     cost: currJourney.cost,
     creatorID: currJourney.creatorID, 
     creatorRating: currJourney.creatorRating,
-    capacity: currJourney.capacity,
-
-    departure_time: currJourney.time.departureTime,
-    departure_datetime: currJourney.time.departureDate,
-    
   }
 
   // "journeyID": "af694b82-ab8b-11ec-82b4-4f2f17d3e634",
@@ -234,15 +244,13 @@ app.post('/add-to-journey', (req, res) => {
   }
   console.log('props', props)
 
-  })
+  });
 
   //get journey and userid from frontend
   //query database for journey
   //add userid to participants column, insert into database
   //return response
 
-});
- 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
