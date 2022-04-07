@@ -46,7 +46,6 @@ app.get('/journeys', (req, res) => {
   res.json(exJourneys)  
 });
 
-<<<<<<< HEAD
 app.get('/passengers', (req, res) => {
 
   const db = new dataBaseHelper(props)
@@ -62,8 +61,6 @@ app.get('/passengers', (req, res) => {
 //   console.log(newJourney)
 //   res.json(newJourney)
 // });
-=======
->>>>>>> a3df461ebfab25f6ab50f18afde73f6fbbe18dcd
 
 app.post('/newJourneys', (req, res) =>{
   const exJourneys = require('./exJourneys.json');
