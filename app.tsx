@@ -27,6 +27,7 @@ const props = {
   cost: "",
   creatorID: "", 
   creatorRating: "",
+  capacity: 0,
 }
 
 // var con = mysql.createConnection({
@@ -89,6 +90,7 @@ app.post('/newJourneys', (req, res) =>{
     currency: currJourney.currency,
     cost: currJourney.cost,
     creatorID: currJourney.creatorID, 
+    capacity: currJourney.capacity,
     creatorRating: currJourney.creatorRating,
   }
 
