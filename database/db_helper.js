@@ -318,7 +318,7 @@ class dataBaseHelper {
                     }
                     console.log("Found get all passengers data: ", result);
                     if (result){
-                        const exPassengers = { "exPassnengers": [] };
+                        const exPassengers = { "exPassengers": [] };
 
                         for (let i = 0; i < result.length; i++) {
                             exPassengers.exPassengers.push(result[i])
