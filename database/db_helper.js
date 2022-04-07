@@ -32,8 +32,12 @@ class dataBaseHelper {
 
     //add props to database, set status as true or false if operation was successful
     async insertUserIntoDatabase() {
-        var sql = "INSERT INTO userAccountInfo (name, username, email, password, rating, capacity) VALUES ?";
-        console.log("Adding to database: name: ", this.name, ", username: ", this.userName, ", email: ",this.email, ", password: ",this.password, ", rating: ",this.rating, ", capacity: ", this.capacity)
+        var sql = "INSERT INTO userAccountInfo (name, username, email, password, rating) VALUES ?";
+        console.log("Adding to database: name: ", this.name, 
+                    ", username: ", this.userName, 
+                    ", email: ",this.email, 
+                    ", password: ",this.password, 
+                    ", rating: ",this.rating)
         
         var con = this.mysql.createConnection({
             host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
@@ -43,7 +47,12 @@ class dataBaseHelper {
             database: "User_Information_Database"
         });
         var values = [
-            [this.name, this.userName, this.email, this.password, this.rating, this.capacity]
+            [this.name, 
+            this.userName, 
+            this.email, 
+            this.password, 
+            this.rating, 
+            this.capacity]
         ];
         await new Promise((resolve) => {
             con.connect(function(err) {
@@ -69,8 +78,8 @@ class dataBaseHelper {
 
 
     async insertJourneyIntoDatabase() {
-        var sql = "INSERT INTO journeyListFormat (journeyID, journeyType, startName, startLat, startLong, endName, endLat, endLong, currency, cost, creatorID, creatorRating) VALUES ?";
-        console.log("Adding to database: journeyID: ", this.journeyID, ", journeyType: ", this.journeyType, ", startName: ",this.startName, ", endName: ",this.endName, ", cost: ",this.cost)
+        var sql = "INSERT INTO journeyListFormat (journeyID, journeyType, startName, startLat, startLong, endName, endLat, endLong, currency, cost, creatorID, creatorRating, capacity) VALUES ?";
+        console.log("Adding to database: journeyID: ", this.journeyID, ", journeyType: ", this.journeyType, ", startName: ",this.startName, ", endName: ",this.endName, ", cost: ",this.cost, ", capacity: ",this.capacity)
         //(journeyID, journeyType, startName, startLat, startLong, endName, endLat, endLong, currency, cost, creatorID, creatorRating)
         var con = this.mysql.createConnection({
             host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
@@ -91,7 +100,8 @@ class dataBaseHelper {
                 this.currency,
                 this.cost,
                 this.creatorID,
-                this.creatorRating  ]
+                this.creatorRating,
+                this.capacity  ]
         ];
         await new Promise((resolve) => {
             con.connect(function(err) {
