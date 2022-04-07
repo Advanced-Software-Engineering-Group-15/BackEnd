@@ -28,7 +28,7 @@ class dataBaseHelper {
         this.departure_datetime = props.departure_datetime.toString();
         this.mysql = require('mysql');
         this.status = new Boolean();
-        this.userInfo = {}
+        this.userInfo = {};
     }
 
     //add props to database, set status as true or false if operation was successful
@@ -343,6 +343,67 @@ class dataBaseHelper {
             console.log('Is database valid? ', status);
             this.status = status;
             return this.getStatus;
+        })
+    }
+
+    async getUserInfoFromUserId() {
+        var sql = "SELECT * FROM userAccountInfo WHERE id = ?";
+        console.log("Querying database: User ID: ", this.userId);
+        const con = this.mysql.createConnection({
+            host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+            port: 3306,
+            user: "masterUsername",
+            password: "password",
+            database: "User_Information_Database"
+        });
+
+        var user = {
+            userId: this.userId
+        };
+
+        await new Promise((resolve) => {
+            con.connect(function(err) {
+                if (err) throw err;
+                console.log("Connected!");
+                con.query(sql, [user.userId], function (err, result) {
+                    if (err) {
+                        //This is is username is not found in Database 
+                        console.log("This user ID is not present: ", user.userId);
+                        return resolve(false)
+                    }
+                    if (result[0] == undefined){
+                        console.log("result is undefined");    
+                        return resolve(false)
+                    }
+                    // If Username found in Database
+                    console.log("Found User: ", user.userId);
+
+                    this.userName = result[0].username
+                    this.email = result[0].email
+                    this.name = result[0].name
+                    this.rating = result[0].rating
+                    this.userId = result[0].id
+                        
+
+                    const userInfo = {
+                        'username': this.userName,
+                        'email': this.email, 
+                        'name': this.name,
+                        'rating': this.rating,
+                        'userID': this.userId,
+                        'isCreator': result[0].isCreator
+                    }
+                    console.log(userInfo)
+
+                    return resolve([true, userInfo])
+                  
+                });
+            });
+        }).then((response) => {
+            console.log('Is user id valid? ', response[0]);
+            this.userInfo = response[1]
+            this.status = response[0];
+            return this.getStatus, this.getUserInfo;
         })
     }
 

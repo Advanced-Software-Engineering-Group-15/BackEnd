@@ -10,6 +10,8 @@ const port = 443
 var bodyParser = require('body-parser');
 const fileSystem = require("fs");
 var mysql = require('mysql');
+const generateNewRating = require('./ratingAlgorithm.tsx');
+
 
 const props = {
   userName: "",
@@ -138,9 +140,8 @@ app.post('/sign-in', (req, res) => {
     currency: "",
     cost: "",
     creatorID: "", 
+    departure_datetime: 'YYYY-MM-DD HH:MI:SS',
     creatorRating: "",
-    capacity: "",
-    departure_datetime: ""
   }
 
   const db = new dataBaseHelper(props)
@@ -194,6 +195,7 @@ app.post('/new-user', (req, res) => {
     currency: "",
     cost: "",
     creatorID: "", 
+    departure_datetime: 'YYYY-MM-DD HH:MI:SS',
     creatorRating: "",
   }
 
@@ -232,6 +234,7 @@ app.post('/add-to-journey', (req, res) => {
     currency: "",
     cost: "",
     creatorID: data.creatorID, 
+    departure_datetime: 'YYYY-MM-DD HH:MI:SS',
     creatorRating: "",
   }
   console.log('props', props)
@@ -268,4 +271,53 @@ app.post('/add-to-journey', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+app.post('/rating', (req, res) =>{
+  console.log('herrrrre')
+  const data = JSON.parse(req.body.body)
+  console.log(data);
+
+  const props = {
+    userName: "",
+    password: "",
+    email: "",
+    name: "",
+    rating: "",
+    userId: data.userID,
+    journeyID: "",
+    journeyType: "",
+    startName: "",
+    startLat: "",
+    startLong: "",
+    endName: "",
+    endLat: "",
+    endLong: "",
+    currency: "",
+    cost: "",
+    creatorID: "", 
+    departure_datetime: 'YYYY-MM-DD HH:MI:SS',
+    creatorRating: "",
+  }
+  
+  const db = new dataBaseHelper(props)
+  db.getUserInfoFromUserId
+  //generateNewRating(data.userID, data.journeyID, data.rating)
+  
+  db.getUserInfoFromUserId().then(() => {
+    console.log("Is user id valid: ", db.getStatus);
+    const response = {
+      'userIDValid': db.getStatus,
+      'userInfo': db.getUserInfo
+    }
+    return response;
+  }).then((response) => {
+    res.json(response)
+    if (response.userIDValid){
+      const rating = generateNewRating(response.userInfo.rating, data.rating)
+      console.log('Updated rating is: ', rating)
+    }
+  })
+  
+  
+});
 
