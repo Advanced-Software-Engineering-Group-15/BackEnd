@@ -159,22 +159,6 @@
       "creatorRating": 2.5,
       "Participants": null,
       "capacity": null
-    },
-    {
-      "journeyID": "fac728d2-ab8c-11ec-b6f5-498539cc1164",
-      "journeyType": "WALKING",
-      "startName": "Leinster Street South, Dublin, Ireland",
-      "startLat": 53.342,
-      "startLong": -6.253632,
-      "endName": "Starbucks Stephen's Green, Saint Stephen's Green, Dublin 2, Ireland",
-      "endLat": 53.339323,
-      "endLong": -6.257513,
-      "currency": "$",
-      "cost": 0,
-      "creatorID": "TestUser",
-      "creatorRating": 2.5,
-      "Participants": null,
-      "capacity": null
     }
   ]
 }
