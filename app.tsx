@@ -31,7 +31,7 @@ const props = {
   creatorID: "", 
   creatorRating: "",
   capacity: 0,
-  departure_datetime: DATETIME,
+  departure_datetime: '',
 }
 
 app.use(express.urlencoded({ extended: true }));
