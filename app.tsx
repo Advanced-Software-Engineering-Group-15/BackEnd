@@ -27,20 +27,11 @@ const props = {
   cost: "",
   creatorID: "", 
   creatorRating: "",
+  capacity: "",
+  departure_time: "",
+  departure_datetime: "",
+
 }
-
-// var con = mysql.createConnection({
-//   host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
-//   port: 3306,
-//   user: "masterUsername",
-//   password: "password",
-//   database: "User_Information_Database"
-// });
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -54,12 +45,6 @@ app.get('/journeys', (req, res) => {
   res.json(exJourneys)  
   //});
 });
-
-// app.get('/createdJourneys', (req, res) => {
-//   const newJourney = require('./newJourney.json');
-//   console.log(newJourney)
-//   res.json(newJourney)
-// });
 
 app.post('/newJourneys', (req, res) =>{
   const exJourneys = require('./exJourneys.json');
@@ -90,6 +75,11 @@ app.post('/newJourneys', (req, res) =>{
     cost: currJourney.pricing.quantity,
     creatorID: currJourney.creatorID, 
     creatorRating: currJourney.creatorRating,
+    capacity: currJourney.capacity,
+
+    departure_time: currJourney.time.departureTime,
+    departure_datetime: currJourney.time.departureDate,
+    
   }
 
   const db = new dataBaseHelper(props)
