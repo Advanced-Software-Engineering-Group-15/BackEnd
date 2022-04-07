@@ -7,6 +7,7 @@ const app = express()
 const port = 443
 var bodyParser = require('body-parser');
 const fileSystem = require("fs");
+var mysql = require('mysql');
 
 const props = {
   userName: "",
@@ -214,7 +215,7 @@ app.post('/add-to-journey', (req, res) => {
     creatorRating: "",
   }
   console.log('props', props)
-    var con = this.mysql.createConnection({
+    var con = mysql.createConnection({
         host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
         port: 3306,
         user: "masterUsername",
@@ -230,7 +231,7 @@ app.post('/add-to-journey', (req, res) => {
         con.connect(function(err) {
         if (err) throw err;
         console.log("Connected!");
-        var sql = "INSERT INTO addUsers (journeyID, userID, creatorID) VALUES ?";
+        var sql = "INSERT INTO addingUsers (journeyID, userID, creatorID) VALUES ?";
         console.log(values);
         con.query(sql, [values], function (err, result) {
             if (err) throw err;
