@@ -223,8 +223,8 @@ app.post('/add-to-journey', (req, res) => {
   console.log(data);
 
   const props = {
-    userName: data.userName.toString(),
-    password: data.password.toString(),
+    userName: "",
+    password: "",
     email: "",
     name: "",
     rating: "",
