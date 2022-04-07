@@ -139,6 +139,8 @@ app.post('/sign-in', (req, res) => {
     cost: "",
     creatorID: "", 
     creatorRating: "",
+    capacity: "",
+    departure_datetime: ""
   }
 
   const db = new dataBaseHelper(props)
