@@ -27,11 +27,20 @@ const props = {
   cost: "",
   creatorID: "", 
   creatorRating: "",
-  capacity: "",
-  departure_time: "",
-  departure_datetime: "",
-
 }
+
+// var con = mysql.createConnection({
+//   host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+//   port: 3306,
+//   user: "masterUsername",
+//   password: "password",
+//   database: "User_Information_Database"
+// });
+
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -43,7 +52,14 @@ app.get('/journeys', (req, res) => {
   const exJourneys = require('./exJourneys.json');
   console.log(exJourneys)
   res.json(exJourneys)  
+  //});
 });
+
+// app.get('/createdJourneys', (req, res) => {
+//   const newJourney = require('./newJourney.json');
+//   console.log(newJourney)
+//   res.json(newJourney)
+// });
 
 app.post('/newJourneys', (req, res) =>{
   const exJourneys = require('./exJourneys.json');
@@ -64,21 +80,16 @@ app.post('/newJourneys', (req, res) =>{
     userId: "",
     journeyID: currJourney.journeyID,
     journeyType: currJourney.journeyType,
-    startName: currJourney.journeyStart.name,
-    startLat: currJourney.journeyStart.latitude,
-    startLong: currJourney.journeyStart.longitude,
-    endName: currJourney.journeyEnd.name,
-    endLat: currJourney.journeyEnd.latitude,
-    endLong: currJourney.journeyEnd.longitude,
-    currency: currJourney.pricing.currency,
-    cost: currJourney.pricing.quantity,
+    startName: currJourney.startName,
+    startLat: currJourney.startLat,
+    startLong: currJourney.startLong,
+    endName: currJourney.endName,
+    endLat: currJourney.endLat,
+    endLong: currJourney.endLong,
+    currency: currJourney.currency,
+    cost: currJourney.cost,
     creatorID: currJourney.creatorID, 
     creatorRating: currJourney.creatorRating,
-    capacity: currJourney.capacity,
-
-    departure_time: currJourney.time.departureTime,
-    departure_datetime: currJourney.time.departureDate,
-    
   }
 
   const db = new dataBaseHelper(props)
@@ -181,7 +192,7 @@ app.post('/new-user', (req, res) => {
   }
 
   const db = new dataBaseHelper(props)
-  db.insertIntoDatabase().then(() => {
+  db.insertUserIntoDatabase().then(() => {
     console.log("Is user created in database: ", db.getStatus);
     const response = {
       isUserInDatabase: db.getStatus
@@ -192,7 +203,66 @@ app.post('/new-user', (req, res) => {
   });
 
 });
- 
+
+app.post('/add-to-journey', (req, res) => {
+  const data = JSON.parse(req.body.body)
+  console.log(data);
+
+  const props = {
+    userName: "",
+    password: "",
+    email: "",
+    name: "",
+    rating: "",
+    userId: data.userID,
+    journeyID: data.journeyID,
+    journeyType: "",
+    startName: "",
+    startLat: "",
+    startLong: "",
+    endName: "",
+    endLat: "",
+    endLong: "",
+    currency: "",
+    cost: "",
+    creatorID: data.creatorID, 
+    creatorRating: "",
+  }
+  console.log('props', props)
+
+  var sql = "INSERT INTO addUsers (journeyID, userID, creatorID) VALUES ?";
+        
+        var con = this.mysql.createConnection({
+            host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+            port: 3306,
+            user: "masterUsername",
+            password: "password",
+            database: "User_Information_Database"
+        });
+        var values = [
+            [   data.journeyID,
+                data.userID,
+                data.creatorID,
+             ]
+        ];
+            con.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected!");
+            console.log(values);
+            con.query(sql, [values], function (err, result) {
+                if (err) throw err;
+                if (result == undefined){
+                    console.log("Could not insert into database")
+                }
+                console.log("Number of records inserted: " + result.affectedRows);
+                console.log('Is new entry added to addingUSers database');
+            });
+            });
+           
+            
+  })
+
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
