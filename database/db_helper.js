@@ -25,7 +25,7 @@ class dataBaseHelper {
         this.creatorID = props.creatorID.toString();
         this.creatorRating = props.creatorRating.toString();      
         this.capacity = props.capacity;
-        this.depature_datetime = props.depature_datetime;
+        this.departure_datetime = props.departure_datetime.toString();
         this.mysql = require('mysql');
         this.status = new Boolean();
         this.userInfo = {}
@@ -79,14 +79,14 @@ class dataBaseHelper {
 
 
     async insertJourneyIntoDatabase() {
-        var sql = "INSERT INTO journeyListFormat (journeyID, journeyType, startName, startLat, startLong, endName, endLat, endLong, currency, cost, creatorID, creatorRating, capacity, depature_datetime) VALUES ?";
+        var sql = "INSERT INTO journeyListFormat (journeyID, journeyType, startName, startLat, startLong, endName, endLat, endLong, currency, cost, creatorID, creatorRating, capacity, departure_datetime) VALUES ?";
         console.log("Adding to database: journeyID: ", this.journeyID, 
                     ", journeyType: ", this.journeyType, 
                     ", startName: ",this.startName, 
                     ", endName: ",this.endName,     
                     ", cost: ",this.cost, 
                     ", capacity: ",this.capacity,
-                    ", depature_datetime", this.depature_datetime)
+                    ", departure_datetime", this.departure_datetime)
         //(journeyID, journeyType, startName, startLat, startLong, endName, endLat, endLong, currency, cost, creatorID, creatorRating)
         var con = this.mysql.createConnection({
             host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
@@ -109,7 +109,7 @@ class dataBaseHelper {
                 this.creatorID,
                 this.creatorRating,
                 this.capacity,
-                this.depature_datetime  ]
+                this.departure_datetime  ]
         ];
         await new Promise((resolve) => {
             con.connect(function(err) {
