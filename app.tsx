@@ -231,7 +231,7 @@ app.post('/add-to-journey', (req, res) => {
     creatorRating: "",
   }
   console.log('props', props)
-    var con = this.mysql.createConnection({
+    var con = mysql.createConnection({
         host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
         port: 3306,
         user: "masterUsername",
