@@ -56,6 +56,16 @@ app.get('/journeys', (req, res) => {
   //});
 });
 
+app.get('/passengers', (req, res) => {
+
+  const db = new dataBaseHelper(props)
+  db.getAllPassengers() //.then(() => {
+  const exPassengers = require('./exPassengers.json');
+  console.log(exPassengers)
+  res.json(exPassengers)  
+  //});
+});
+
 // app.get('/createdJourneys', (req, res) => {
 //   const newJourney = require('./newJourney.json');
 //   console.log(newJourney)

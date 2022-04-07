@@ -284,6 +284,58 @@ class dataBaseHelper {
         })
     }
 
+    async getAllPassengers(){
+        var sql = "SELECT * FROM User_Information_Database.addingUsers;"
+
+        const con = this.mysql.createConnection({
+            host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+            port: 3306,
+            user: "masterUsername",
+            password: "password",
+            database: "User_Information_Database"
+        });
+
+        await new Promise((resolve) => {
+            con.connect(function(err) {
+                if (err) throw err;
+                console.log("Connected for get all passengers!");
+                con.query(sql, function (err, result) {
+                    if (err) {
+                        console.log("Database can't be accessed: ");
+                        return resolve(false)
+                    }
+                    if (result[0] == undefined){
+                        console.log("result is undefined");    
+                        return resolve(false)
+                    }
+                    console.log("Found get all passengers data: ", result);
+                    if (result){
+                        const exPassengers = { "exPassnengers": [] };
+
+                        for (let i = 0; i < result.length; i++) {
+                            exPassengers.exPassengers.push(result[i])
+                          }
+                        fileSystem.writeFile("./exPassengers.json", JSON.stringify(exPassengers, null, 2), err=>{
+                            if(err){
+                              console.log("Error writing file" ,err)
+                            } else {
+                              console.log('JSON data is written to exPassengers file successfully')
+                            }
+                        })                       
+                        return resolve(true)
+                    }
+                    else{
+                        return resolve(false)
+                    } 
+                });
+            });
+        }).then((status) => {
+            console.log('Is database valid? ', status);
+            this.status = status;
+            return this.getStatus;
+        })
+    }
+
     //gets the status of the last query, whether its true or false
     get getStatus(){
         return this.status;
