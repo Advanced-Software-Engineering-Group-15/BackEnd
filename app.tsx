@@ -6,7 +6,7 @@ const port = 443
 //const port = 5000 //for localhost
 var bodyParser = require('body-parser');
 const fileSystem = require("fs");
-// var mysql = require('mysql');
+var mysql = require('mysql');
 
 const props = {
   userName: "",
