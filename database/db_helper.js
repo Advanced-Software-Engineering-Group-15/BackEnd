@@ -213,13 +213,15 @@ class dataBaseHelper {
                         this.name = result[0].name
                         this.rating = result[0].rating
                         this.userId = result[0].id
+                        
 
                         const userInfo = {
                             'username': this.userName,
                             'email': this.email, 
                             'name': this.name,
                             'rating': this.rating,
-                            'userID': this.userId
+                            'userID': this.userId,
+                            'isCreator': result[0].isCreator
                         }
                         console.log(userInfo)
 

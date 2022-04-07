@@ -153,7 +153,8 @@ app.post('/sign-in', (req, res) => {
         'email': '', 
         'name': '',
         'rating': '',
-        'userID': ''
+        'userID': '',
+        'isCreator': false
       }
     }
 
@@ -258,11 +259,9 @@ app.post('/add-to-journey', (req, res) => {
             console.log("Number of records inserted: " + result.affectedRows);
             console.log('Is new entry added to addingUSers database');
         });
-        });
-           
+        });  
             
   })
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
