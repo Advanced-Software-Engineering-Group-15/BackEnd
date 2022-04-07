@@ -234,7 +234,6 @@ app.post('/add-to-journey', (req, res) => {
                 data.creatorID,
              ]
         ];
-        await new Promise((resolve) => {
             con.connect(function(err) {
             if (err) throw err;
             console.log("Connected!");
@@ -243,14 +242,11 @@ app.post('/add-to-journey', (req, res) => {
                 if (err) throw err;
                 if (result == undefined){
                     console.log("Could not insert into database")
-                    return resolve(false)
                 }
                 console.log("Number of records inserted: " + result.affectedRows);
                 console.log('Is new entry added to addingUSers database');
-                return resolve(true)
             });
             });
-        })
            
             
   })
