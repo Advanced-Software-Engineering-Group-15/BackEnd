@@ -1,4 +1,4 @@
-import { DATETIME } from "mysql/lib/protocol/constants/types";
+// import { DATETIME } from "mysql/lib/protocol/constants/types";
 
 const dataBaseHelper = require('./database/db_helper');
 const expect = require('chai').expect;
