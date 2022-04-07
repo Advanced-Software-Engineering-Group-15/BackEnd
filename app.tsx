@@ -219,6 +219,57 @@ app.post('/new-user', (req, res) => {
 });
 
 app.post('/add-to-journey', (req, res) => {
+  const data = JSON.parse(req.body.body)
+  console.log(data);
+
+  const props = {
+    userName: data.userName.toString(),
+    password: data.password.toString(),
+    email: "",
+    name: "",
+    rating: "",
+    userId: data.userID,
+    journeyID: data.journeyID,
+    journeyType: "",
+    startName: "",
+    startLat: "",
+    startLong: "",
+    endName: "",
+    endLat: "",
+    endLong: "",
+    currency: "",
+    cost: "",
+    creatorID: data.creatorID, 
+    creatorRating: "",
+  }
+  console.log('props', props)
+
+  const db = new dataBaseHelper(props)
+  db.isValidCreds().then(() => {
+    console.log("Login status sent to frontend is: ", db.getStatus);
+    if(db.getStatus){
+      var user_props = db.getUserInfo
+    }
+    else{
+      var user_props = {
+        'username': '',
+        'email': '', 
+        'name': '',
+        'rating': '',
+        'userID': ''
+      }
+    }
+
+    const response = {
+      isLoginSuccessful: db.getStatus,
+      userProps: user_props
+    }
+    console.log(response)
+    return response;
+
+  }).then((response) => {
+    res.json(response)
+  })
 
   //get journey and userid from frontend
   //query database for journey
