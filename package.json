@@ -21,7 +21,6 @@
     "body-parser": "^1.19.2",
     "express": "^4.17.2",
     "fs": "^0.0.1-security",
-    "js-date-to-sql-datetime": "^1.2.7",
     "mysql": "^2.18.1"
   }
 }
