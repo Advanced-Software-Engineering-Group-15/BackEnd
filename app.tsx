@@ -247,7 +247,7 @@ app.post('/add-to-journey', (req, res) => {
         con.connect(function(err) {
         if (err) throw err;
         console.log("Connected!");
-        var sql = "INSERT INTO addUsers (journeyID, userID, creatorID) VALUES ?";
+        var sql = "INSERT INTO addingUsers (journeyID, userID, creatorID) VALUES ?";
         console.log(values);
         con.query(sql, [values], function (err, result) {
             if (err) throw err;
