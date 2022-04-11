@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/journeys', (req, res) => {
-
+  console.log("get journeys has been called...")
   const db = new dataBaseHelper(props)
   db.getAllJourneys()
   const exJourneys = require('./exJourneys.json');
