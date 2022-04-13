@@ -386,5 +386,5 @@ app.listen(port, () => {
 })
 
 
-
+export {generateNewRating}
 
