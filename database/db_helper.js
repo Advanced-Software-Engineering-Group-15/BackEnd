@@ -111,7 +111,7 @@ class dataBaseHelper {
                 this.creatorRating,
                 this.capacity,
                 this.departure_datetime,
-                'Pending'
+                this.journeyStatus
             ]
         ];
         await new Promise((resolve) => {
