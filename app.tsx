@@ -94,7 +94,7 @@ app.post('/newJourneys', (req, res) =>{
     capacity: currJourney.capacity,
     creatorRating: currJourney.creatorRating,
     departure_datetime: currJourney.departure_datetime,
-    journeyStatus: "Pending"
+    journeyStatus: currJourney.Status
   }
 
   const db = new dataBaseHelper(props)
