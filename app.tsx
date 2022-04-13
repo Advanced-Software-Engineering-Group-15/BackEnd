@@ -1,8 +1,6 @@
 // import { DATETIME } from "mysql/lib/protocol/constants/types";
 
 const dataBaseHelper = require('./database/db_helper');
-// const expect = require('chai').expect;
-// const toSQLDate = require('js-date-to-sql-datetime');
 
 const express = require('express')
 const app = express()
@@ -10,6 +8,10 @@ const port = 443
 var bodyParser = require('body-parser');
 const fileSystem = require("fs");
 var mysql = require('mysql');
+
+const generateNewRating = (currentRating, inputRating) => {
+  return ((Number(currentRating)*0.9 + Number(inputRating)*0.1)).toString()
+}
 
 const props = {
   userName: "",
@@ -50,18 +52,11 @@ app.get('/journeys', (req, res) => {
 app.get('/passengers', (req, res) => {
 
   const db = new dataBaseHelper(props)
-  db.getAllPassengers() //.then(() => {
+  db.getAllPassengers() 
   const exPassengers = require('./exPassengers.json');
   console.log(exPassengers)
   res.json(exPassengers)  
-  //});
 });
-
-// app.get('/createdJourneys', (req, res) => {
-//   const newJourney = require('./newJourney.json');
-//   console.log(newJourney)
-//   res.json(newJourney)
-// });
 
 app.post('/newJourneys', (req, res) =>{
   const exJourneys = require('./exJourneys.json');
@@ -184,7 +179,7 @@ app.post('/new-user', (req, res) => {
     password: data.repeated_password.toString(),
     email: data.emailAddress.toString(),
     name: (data.firstName+data.familyName).toString(),
-    rating: "3".toString(),
+    rating: 3,
     userId: "",
     journeyID: "",
     journeyType: "",
@@ -198,6 +193,7 @@ app.post('/new-user', (req, res) => {
     cost: "",
     creatorID: "", 
     creatorRating: "",
+    journeyStatus: ""
   }
 
   const db = new dataBaseHelper(props)
@@ -336,7 +332,59 @@ app.post('/add-to-journey', (req, res) => {
               
     })
 
+app.post('/rating', (req, res) =>{
+  const data = JSON.parse(req.body.body)
+  console.log(data);
+
+  const props = {
+    userName: "",
+    password: "",
+    email: "",
+    name: "",
+    rating: "",
+    userId: data.userID,
+    journeyID: "",
+    journeyType: "",
+    startName: "",
+    startLat: "",
+    startLong: "",
+    endName: "",
+    endLat: "",
+    endLong: "",
+    currency: "",
+    cost: "",
+    creatorID: "", 
+    departure_datetime: 'YYYY-MM-DD HH:MI:SS',
+    creatorRating: "",
+  }
+  
+  const db = new dataBaseHelper(props)
+  
+  db.getUserInfoFromUserId().then(() => {
+    console.log("Is user id valid: ", db.getStatus);
+    const response = {
+      'userIDValid': db.getStatus,
+      'userInfo': db.getUserInfo
+    }
+    return response;
+  }).then((response) => {
+    res.json(response)
+    if (response.userIDValid){
+      const rating = generateNewRating(response.userInfo.rating, data.rating.toString())
+      console.log('Updated rating is: ', rating)
+      const db2 = new dataBaseHelper({userId: data.userID, rating:  rating})
+      db2.addRating().then(() => {
+        console.log('Added new rating to database', rating, 'status of database write is: ', db2.getStatus)
+      })
+    }
+  })
+})
+
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+
+
 
