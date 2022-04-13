@@ -6,29 +6,29 @@ const { userInfo } = require('os');
 class dataBaseHelper {
 
     constructor(props){
-        this.userName = props.userName.toString();
-        this.password = props.password.toString();
-        this.email = props.email.toString();
-        this.name = props.name.toString();
-        this.rating = props.rating.toString();
-        this.userId = props.userId.toString(); //may or may not be a number or string
-        this.journeyID = props.journeyID.toString();
-        this.journeyType = props.journeyType.toString();
-        this.startName = props.startName.toString();
-        this.startLat = props.startLat.toString();
-        this.startLong = props.startLong.toString();
-        this.endName = props.endName.toString();
-        this.endLat = props.endLat.toString();
-        this.endLong = props.endLong.toString();
-        this.currency = props.currency.toString();
-        this.cost = props.cost.toString();
-        this.creatorID = props.creatorID.toString();
-        this.creatorRating = props.creatorRating.toString();      
+        this.userName = props.userName;
+        this.password = props.password;
+        this.email = props.email
+        this.name = props.name
+        this.rating = props.rating
+        this.userId = props.userId
+        this.journeyID = props.journeyID
+        this.journeyType = props.journeyType
+        this.startName = props.startName;
+        this.startLat = props.startLat;
+        this.startLong = props.startLong;
+        this.endName = props.endName;
+        this.endLat = props.endLat;
+        this.endLong = props.endLong;
+        this.currency = props.currency;
+        this.cost = props.cost;
+        this.creatorID = props.creatorID;
+        this.creatorRating = props.creatorRating;      
         this.capacity = props.capacity;
-        this.departure_datetime = props.departure_datetime.toString();
+        this.departure_datetime = props.departure_datetime;
         this.mysql = require('mysql');
         this.status = new Boolean();
-        this.journeyStatus = props.journeyStatus.toString();
+        this.journeyStatus = props.journeyStatus;
         this.userInfo = {}
     }
 
@@ -53,8 +53,7 @@ class dataBaseHelper {
             this.userName, 
             this.email, 
             this.password, 
-            this.rating, 
-            this.capacity]
+            this.rating]
         ];
         await new Promise((resolve) => {
             con.connect(function(err) {
@@ -348,6 +347,107 @@ class dataBaseHelper {
             this.status = status;
             return this.getStatus;
         })
+    }
+
+
+    async getUserInfoFromUserId() {
+        var sql = "SELECT * FROM userAccountInfo WHERE id = ?";
+        console.log("Querying database: User ID: ", this.userId);
+        const con = this.mysql.createConnection({
+            host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+            port: 3306,
+            user: "masterUsername",
+            password: "password",
+            database: "User_Information_Database"
+        });
+
+        var user = {
+            userId: this.userId
+        };
+
+        await new Promise((resolve) => {
+            con.connect(function(err) {
+                if (err) throw err;
+                console.log("Connected!");
+                con.query(sql, [user.userId], function (err, result) {
+                    if (err) {
+                        //This is is username is not found in Database 
+                        console.log("This user ID is not present: ", user.userId);
+                        return resolve(false)
+                    }
+                    if (result[0] == undefined){
+                        console.log("result is undefined");    
+                        return resolve(false)
+                    }
+                    // If Username found in Database
+                    console.log("Found User: ", user.userId);
+
+                    this.userName = result[0].username
+                    this.email = result[0].email
+                    this.name = result[0].name
+                    this.rating = result[0].rating
+                    this.userId = result[0].id
+                        
+
+                    const userInfo = {
+                        'username': this.userName,
+                        'email': this.email, 
+                        'name': this.name,
+                        'rating': this.rating,
+                        'userID': this.userId,
+                        'isCreator': result[0].isCreator
+                    }
+                    console.log(userInfo)
+
+                    return resolve([true, userInfo])
+                  
+                });
+            });
+        }).then((response) => {
+            console.log('Is user id valid? ', response[0]);
+            this.userInfo = response[1]
+            this.status = response[0];
+            return this.getStatus, this.getUserInfo;
+        })
+    }
+
+
+    async addRating(){
+        var sql = "UPDATE userAccountInfo SET rating= ? WHERE id = ?"
+            
+        var con = this.mysql.createConnection({
+            host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+            port: 3306,
+            user: "masterUsername",
+            password: "password",
+            database: "User_Information_Database"
+        });
+        var values = [
+            [   this.rating, //new updated rating value
+                this.userId, //user to add rating to
+            ]
+        ];
+        console.log('Variables to be added to database', values)
+        await new Promise((resolve) => {
+            con.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected!");
+            console.log(values);
+            con.query(sql, [this.rating, this.userId], function (err, result) {
+                if (err) throw err;
+                if (result == undefined){
+                    console.log("Could not insert into database")
+                    return resolve(false)
+                }
+                console.log("Number of records inserted: " + result.affectedRows);
+                return resolve(true)
+            });
+            });
+        }).then((status) => {
+            console.log('Is new rating added to database ', status);
+            this.status = status;
+            return this.getStatus;
+        });
     }
 
     //gets the status of the last query, whether its true or false
