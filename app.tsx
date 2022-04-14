@@ -37,8 +37,18 @@ const props = {
   journeyStatus: '',
 }
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
+
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  parameterLimit: 100000,
+  extended: true 
+}));
+
 
 app.get('/journeys', (req, res) => {
   console.log("get journeys has been called...")
