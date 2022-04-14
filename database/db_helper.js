@@ -1,6 +1,8 @@
 var bodyParser = require('body-parser');
 const fileSystem = require("fs");
 const { userInfo } = require('os');
+require("babel-core/register");
+require("babel-polyfill");
 
 
 class dataBaseHelper {

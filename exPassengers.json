@@ -1,0 +1,46 @@
+{
+  "exPassengers": [
+    {
+      "journeyID": "144cf266-b6ac-11ec-ad07-2f332d434d6c",
+      "userID": 1,
+      "creatorID": 1,
+      "journeyCapacity": null,
+      "Status": null
+    },
+    {
+      "journeyID": "1b0fcfe6-bb58-11ec-9456-15943f851098",
+      "userID": 16,
+      "creatorID": 1,
+      "journeyCapacity": null,
+      "Status": null
+    },
+    {
+      "journeyID": "21afeae5-b687-11ec-b282-b5b557e8552a",
+      "userID": 1,
+      "creatorID": 1,
+      "journeyCapacity": null,
+      "Status": null
+    },
+    {
+      "journeyID": "99aee310-b67f-11ec-b69d-d7cfe56eea6d",
+      "userID": 1,
+      "creatorID": 0,
+      "journeyCapacity": null,
+      "Status": null
+    },
+    {
+      "journeyID": "ac06ea56-b686-11ec-b01f-45c5fdeead48",
+      "userID": 1,
+      "creatorID": 0,
+      "journeyCapacity": null,
+      "Status": null
+    },
+    {
+      "journeyID": "ac06ea56-b686-11ec-b01f-45c5fdeead48",
+      "userID": 15,
+      "creatorID": 0,
+      "journeyCapacity": null,
+      "Status": null
+    }
+  ]
+}

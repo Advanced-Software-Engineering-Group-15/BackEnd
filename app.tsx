@@ -11,7 +11,7 @@ var mysql = require('mysql');
 
 const generateNewRating = (currentRating, inputRating) => {
   return ((Number(currentRating)*0.9 + Number(inputRating)*0.1)).toString()
-}
+};
 
 const props = {
   userName: "",
@@ -148,14 +148,7 @@ app.post('/sign-in', (req, res) => {
       var user_props = db.getUserInfo
     }
     else{
-      var user_props = {
-        'username': '',
-        'email': '', 
-        'name': '',
-        'rating': '',
-        'userID': '',
-        'isCreator': false
-      }
+      var user_props = null
     }
 
     const response = {
@@ -293,45 +286,45 @@ app.post('/add-to-journey', (req, res) => {
       journeyStatus: data.Status,
     }
     console.log('props', props)
-      var con = mysql.createConnection({
-          host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
-          port: 3306,
-          user: "masterUsername",
-          password: "password",
-          database: "User_Information_Database"
-      });
-      var values = [
-          [   data.journeyID,
-              data.Status
-            ]
-      ];
-          con.connect(function(err) {
-          if (err) throw err;
-          console.log("Connected!");
-          var sql = "UPDATE journeyListFormat SET Status= ? WHERE journeyID = ?";
-          console.log(values);
-          con.query(sql, [data.Status, data.journeyID], function (err, result) {
-              if (err) throw err;
-              if (result == undefined){
-                  console.log("Could not update database journeyListFormat")
-              }
-              console.log("Number of records updated: " + result.affectedRows);
-              console.log('record updated with new Status');
-          });
-          var sql2 = "UPDATE addingUsers SET Status= ? WHERE journeyID = ?";
-          con.query(sql2, [data.Status, data.journeyID], function (err, result) {
+    var con = mysql.createConnection({
+        host: "user-information-database.cl7ouywfgywl.eu-west-1.rds.amazonaws.com",
+        port: 3306,
+        user: "masterUsername",
+        password: "password",
+        database: "User_Information_Database"
+    });
+    var values = [
+        [   data.journeyID,
+            data.Status
+          ]
+    ];
+        con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        var sql = "UPDATE journeyListFormat SET Status= ? WHERE journeyID = ?";
+        console.log(values);
+        con.query(sql, [data.Status, data.journeyID], function (err, result) {
             if (err) throw err;
             if (result == undefined){
-                console.log("Could not find or update database journeyListFormat")
+                console.log("Could not update database journeyListFormat")
             }
             console.log("Number of records updated: " + result.affectedRows);
-            console.log('records updated with new Status');
+            console.log('record updated with new Status');
         });
-          }); 
+        var sql2 = "UPDATE addingUsers SET Status= ? WHERE journeyID = ?";
+        con.query(sql2, [data.Status, data.journeyID], function (err, result) {
+          if (err) throw err;
+          if (result == undefined){
+              console.log("Could not find or update database journeyListFormat")
+          }
+          console.log("Number of records updated: " + result.affectedRows);
+          console.log('records updated with new Status');
+      });
+    }); 
 
               
-    })
-
+  })
+  
 app.post('/rating', (req, res) =>{
   const data = JSON.parse(req.body.body)
   console.log(data);
@@ -382,9 +375,7 @@ app.post('/rating', (req, res) =>{
 
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  // console.log(`Example app listening at http://localhost:${port}`)
 })
 
-
-export {generateNewRating}
-
+exports.generateNewRating = generateNewRating;
